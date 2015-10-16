@@ -216,6 +216,14 @@ function ii()   # Get current host related info.
     echo
 }
 
+function set-title() {
+    if [[ -z "$ORIG" ]]; then
+        ORIG=$PS1
+    fi
+    TITLE="\[\e]2;$@\a\]"
+    PS1=${ORIG}${TITLE}
+}
+
 #Git
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
