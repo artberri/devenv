@@ -7,15 +7,15 @@ case $- in
 esac
 
 # HISTORY
-HISTCONTROL=ignoreboth
-HISTSIZE=1000
-HISTFILESIZE=2000
+export HISTCONTROL="ignoredups:ignoreboth"
+export HISTSIZE=1000
+export HISTFILESIZE=1000
 
-# append to the history file, don't overwrite it
 shopt -s histappend
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+shopt -s cdspell
+shopt -s cmdhist
+shopt -s dotglob
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
