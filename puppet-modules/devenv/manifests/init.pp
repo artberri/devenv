@@ -2,25 +2,7 @@ class devenv ( $user ) {
 
     Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin/" ] }
 
-    # Installing packages
-    $packages = [
-        "build-essential",
-        "curl",
-        "gimp",
-        "git",
-        "inkscape",
-        "python",
-        "python-pip",
-        "telnet",
-        "ttf-mscorefonts-installer",
-        "vagrant",
-        "vim",
-        "virtualbox",
-        "wget",
-        "whois",
-        "zsh",
-    ]
-    package { $packages: ensure => "installed" } ->
+    class { 'devenv::packages': } ->
 
     exec { "Installing powerline":
         user    => $user,
@@ -30,13 +12,12 @@ class devenv ( $user ) {
 
     powerline::install { $user: } ->
 
-    file { "/opt/devenv/relink.sh":
-        mode => 755,
+    class { 'devenv::dotfiles':
+        user    => $user,
     } ->
 
-    exec { "Relinking dotfiles":
+    class { 'devenv::sublime_text':
         user    => $user,
-        command => "/opt/devenv/relink.sh"
     }
 
 }
