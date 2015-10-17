@@ -1,8 +1,8 @@
 PATH
-  remote: ./puppet/modules/dev
+  remote: ./puppet/modules/devenv
   specs:
-    berri-dev (0.0.1)
+    berri-devenv (0.0.1)
 
 DEPENDENCIES
-  berri-dev (= 0.0.1)
+  berri-devenv (= 0.0.1)
 

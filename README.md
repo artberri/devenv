@@ -2,7 +2,10 @@
 
 Some personal configuration and resource files
 
-cd ~
+## Installation
+
+```
 git clone https://github.com/artberri/devenv.git /opt/devenv --recursive
 cd /opt/devenv
-/opt/devenvbootstrap.sh
+/opt/devenv/bootstrap.sh
+```

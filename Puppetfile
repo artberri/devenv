@@ -3,7 +3,7 @@
 forge "https://forgeapi.puppetlabs.com"
 
 # Local modules
-mod 'berri-dev', "0.0.1", :path => './puppet/modules/dev'
+mod 'berri-devenv', "0.0.1", :path => './puppet/modules/devenv'
 
 # Modules from the Puppet Forge
 #mod 'puppetlabs-stdlib'

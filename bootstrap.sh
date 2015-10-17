@@ -51,8 +51,7 @@ if [ "$OS_ID" == "Ubuntu" ] && [ "$OS_VERSION" == "15.04" ]; then
     fi
 
     echo "Applying puppet"
-
-sudo puppet apply --modulepath=~/devenv/modules puppet/manifests/init.pp
+    sudo puppet apply --modulepath=/opt/devenv/modules /opt/devenv/puppet/manifests/init.pp
 
     #if ! sudo puppet apply puppet/manifests/init.pp --modulepath=./modules; then
     #   echo "Error: Puppet Modules not installed properly."
@@ -64,5 +63,3 @@ else
     echo "Try installing puppet by hand"
     exit 1
 fi
-
-sudo puppet apply puppet/manifests/init.pp
