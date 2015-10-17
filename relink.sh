@@ -1,6 +1,7 @@
 #!/bin/sh
 
 DEVENV_DIRECTORY=/opt/devenv
+DOT_DIRECTORY=$DEVENV_DIRECTORY/dotfiles
 BKP_DIRECTORY=$DEVENV_DIRECTORY/.devenv.old
 SUBLIME_DIRECTORY=~/.config/sublime-text-3/Packages/User
 
@@ -25,6 +26,21 @@ else
 	echo "Removing .bashrc file and creatink symlink"
 	rm ~/.bashrc
 	ln -s $DOT_DIRECTORY/.bashrc ~/.bashrc
+fi
+
+# .zshrc
+if [ -f "$BKP_DIRECTORY/.zshrc" ]; then
+	echo ".zshrc backup already exists"
+else
+	echo "Creating .zshrc backup file"
+	cp ~/.zshrc $BKP_DIRECTORY/
+fi
+if [ -h "~/.zshrc" ]; then
+	echo ".zshrc symlink already exists"
+else
+	echo "Removing .bashrc file and creatink symlink"
+	rm ~/.zshrc
+	ln -s $DOT_DIRECTORY/.zshrc ~/.zshrc
 fi
 
 # .git-completion.bash
@@ -69,7 +85,7 @@ if [ -h "$SUBLIME_DIRECTORY/Preferences.sublime-settings" ]; then
 else
 	echo "Removing Preferences.sublime-settings file and creatink symlink"
 	rm $SUBLIME_DIRECTORY/Preferences.sublime-settings
-	ln -s $DOT_DIRECTORY/sublime-text-3/Preferences.sublime-settings $SUBLIME_DIRECTORY/Preferences.sublime-settings
+	ln -s $DEVENV_DIRECTORY/sublime-text-3/Preferences.sublime-settings $SUBLIME_DIRECTORY/Preferences.sublime-settings
 fi
 if [ -f "$SUBLIME_DIRECTORY/Default\ \(Linux\).sublime-keymap" ]; then
 	echo "Default (Linux).sublime-keymap backup already exists"
@@ -82,7 +98,7 @@ if [ -h "$SUBLIME_DIRECTORY/Default\ \(Linux\).sublime-keymap" ]; then
 else
 	echo "Removing Default (Linux).sublime-keymap file and creatink symlink"
 	rm $SUBLIME_DIRECTORY/Default\ \(Linux\).sublime-keymap
-	ln -s $DOT_DIRECTORY/sublime-text-3/Default\ \(Linux\).sublime-keymap $SUBLIME_DIRECTORY/Default\ \(Linux\).sublime-keymap
+	ln -s $DEVENV_DIRECTORY/sublime-text-3/Default\ \(Linux\).sublime-keymap $SUBLIME_DIRECTORY/Default\ \(Linux\).sublime-keymap
 fi
 if [ -f "$SUBLIME_DIRECTORY/Package\ Control.sublime-settings" ]; then
 	echo "Package Control.sublime-settings backup already exists"
@@ -95,5 +111,5 @@ if [ -h "$SUBLIME_DIRECTORY/Package\ Control.sublime-settings" ]; then
 else
 	echo "Removing Package Control.sublime-settings file and creatink symlink"
 	rm $SUBLIME_DIRECTORY/Package\ Control.sublime-settings
-	ln -s $DOT_DIRECTORY/sublime-text-3/Package\ Control.sublime-settings $SUBLIME_DIRECTORY/Package\ Control.sublime-settings
+	ln -s $DEVENV_DIRECTORY/sublime-text-3/Package\ Control.sublime-settings $SUBLIME_DIRECTORY/Package\ Control.sublime-settings
 fi

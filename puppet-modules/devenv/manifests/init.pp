@@ -1,4 +1,5 @@
-class devenv {
+class devenv ( $user ) {
+
     Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin/" ] }
 
     # Installing packages
@@ -22,6 +23,20 @@ class devenv {
     package { $packages: ensure => "installed" } ->
 
     exec { "Installing powerline":
-        command => "pip install --user powerline-status"
+        user    => $user,
+        command => "pip install --user powerline-status",
+        creates => "/home/${user}/.local/bin/powerline-config"
+    } ->
+
+    powerline::install { $user: } ->
+
+    file { "/opt/devenv/relink.sh":
+        mode => 755,
+    } ->
+
+    exec { "Relinking dotfiles":
+        user    => $user,
+        command => "/opt/devenv/relink.sh"
     }
+
 }

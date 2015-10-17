@@ -13,7 +13,7 @@ compinit
 
 export EDITOR='vim'
 
-source "$HOME/devenv/antigen/antigen.zsh"
+source "/opt/devenv/antigen/antigen.zsh"
 
 antigen use oh-my-zsh
 

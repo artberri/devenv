@@ -1,6 +1,7 @@
 #!/bin/bash
 OS_VERSION=`lsb_release --release | cut -f2`
 OS_ID=`lsb_release --id | cut -f2`
+USER=$(whoami)
 
 if [ "$OS_ID" == "Ubuntu" ] && [ "$OS_VERSION" == "15.04" ]; then
 
@@ -51,12 +52,10 @@ if [ "$OS_ID" == "Ubuntu" ] && [ "$OS_VERSION" == "15.04" ]; then
     fi
 
     echo "Applying puppet"
-    sudo puppet apply --modulepath=/opt/devenv/modules /opt/devenv/puppet/manifests/init.pp
-
-    #if ! sudo puppet apply puppet/manifests/init.pp --modulepath=./modules; then
-    #   echo "Error: Puppet Modules not installed properly."
-    #   exit 1
-    #fi
+    if ! sudo puppet apply --modulepath=/opt/devenv/modules -e "class { 'devenv': user => \"${USER}\" }"; then
+       echo "Error: Puppet Modules not installed properly."
+       exit 1
+    fi
 
 else
     echo "This script is customized only for Ubuntu 15.04 you are using $OS_ID $OS_VERSION"

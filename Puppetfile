@@ -3,11 +3,13 @@
 forge "https://forgeapi.puppetlabs.com"
 
 # Local modules
-mod 'berri-devenv', "0.0.1", :path => './puppet/modules/devenv'
+mod 'berri-devenv', "0.0.1", :path => './puppet-modules/devenv'
 
 # Modules from the Puppet Forge
 #mod 'puppetlabs-stdlib'
 #mod 'puppetlabs-reboot'
+
+mod 'acme-powerline', '0.1.2'
 
 # A module from git
 # mod 'puppetlabs-ntp',
