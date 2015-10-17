@@ -5,9 +5,11 @@
 	],
 	"installed_packages":
 	[
+		"ColorPicker",
 		"Grunt",
 		"Package Control",
 		"Phpcs",
+		"Puppet",
 		"Sass",
 		"SideBarEnhancements",
 		"SublimeLinter",

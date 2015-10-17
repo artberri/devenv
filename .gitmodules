@@ -1,0 +1,6 @@
+[submodule "antigen"]
+	path = antigen
+	url = https://github.com/zsh-users/antigen.git
+[submodule "powerline"]
+	path = powerline
+	url = https://github.com/powerline/powerline.git

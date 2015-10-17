@@ -1,7 +1,7 @@
 #!/bin/sh
 
-DOT_DIRECTORY=~/dotfiles
-BKP_DIRECTORY=~/bkp.dotfiles
+DEVENV_DIRECTORY=/opt/devenv
+BKP_DIRECTORY=$DEVENV_DIRECTORY/.devenv.old
 SUBLIME_DIRECTORY=~/.config/sublime-text-3/Packages/User
 
 # BKP directory

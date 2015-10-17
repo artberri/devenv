@@ -1,0 +1,4 @@
+.tmp/
+.librarian/
+.devenv.old/
+modules/
