@@ -6,7 +6,9 @@
 	"installed_packages":
 	[
 		"ColorPicker",
+		"GitHub Flavored Markdown Preview",
 		"Grunt",
+		"MarkdownEditing",
 		"Package Control",
 		"Phpcs",
 		"Puppet",
