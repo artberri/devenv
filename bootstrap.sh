@@ -7,7 +7,7 @@ if [ "$OS_ID" == "Ubuntu" ] && [ "$OS_VERSION" == "15.04" ]; then
 
     echo "Ubuntu 15.04 detected"
 
-    if ! type "puppet" > /dev/null; then
+    if ! type "puppet" > /dev/null 2> /dev/null; then
 
         echo "Adding puppetlabs repo"
         wget https://apt.puppetlabs.com/puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null

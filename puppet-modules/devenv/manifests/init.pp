@@ -4,12 +4,6 @@ class devenv ( $user ) {
 
     class { 'devenv::packages': } ->
 
-    exec { "Installing powerline":
-        user    => $user,
-        command => "pip install --user powerline-status",
-        creates => "/home/${user}/.local/bin/powerline-config"
-    } ->
-
     class { 'devenv::powerline':
         user    => $user,
     } ->
