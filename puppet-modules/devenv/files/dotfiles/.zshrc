@@ -39,3 +39,5 @@ antigen bundle kennethreitz/autoenv
 
 antigen-theme agnoster
 antigen-apply
+
+eval `dircolors ~/.dircolors-solarized/dircolors.ansi-dark`

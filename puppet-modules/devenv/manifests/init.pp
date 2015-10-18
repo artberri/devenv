@@ -10,7 +10,13 @@ class devenv ( $user ) {
         creates => "/home/${user}/.local/bin/powerline-config"
     } ->
 
-    powerline::install { $user: } ->
+    class { 'devenv::powerline':
+        user    => $user,
+    } ->
+
+    class { 'devenv::solarize':
+        user    => $user,
+    } ->
 
     class { 'devenv::dotfiles':
         user    => $user,

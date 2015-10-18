@@ -4,6 +4,7 @@ class devenv::packages {
     $packages = [
         "build-essential",
         "curl",
+        "dconf-cli",
         "gimp",
         "git",
         "inkscape",
@@ -19,6 +20,6 @@ class devenv::packages {
         "zsh",
     ]
 
-    package { $packages: ensure => "installed" } 
+    package { $packages: ensure => "installed" }
 
 }

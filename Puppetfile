@@ -9,8 +9,6 @@ mod 'berri-devenv', "0.0.1", :path => './puppet-modules/devenv'
 #mod 'puppetlabs-stdlib'
 #mod 'puppetlabs-reboot'
 
-mod 'acme-powerline', '0.1.2'
-
 # A module from git
 # mod 'puppetlabs-ntp',
 #   :git => 'git://github.com/puppetlabs/puppetlabs-ntp.git'

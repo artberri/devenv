@@ -1,14 +1,8 @@
-FORGE
-  remote: https://forgeapi.puppetlabs.com
-  specs:
-    acme-powerline (0.1.2)
-
 PATH
   remote: ./puppet-modules/devenv
   specs:
     berri-devenv (0.0.1)
 
 DEPENDENCIES
-  acme-powerline (= 0.1.2)
   berri-devenv (= 0.0.1)
 
