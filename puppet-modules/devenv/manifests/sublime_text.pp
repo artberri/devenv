@@ -17,22 +17,22 @@ class devenv::sublime_text ( $user ) {
     } ->
 
     file { "/home/${user}/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap":
-        source => "puppet:///modules/devenv/sublime-text-3/Default (Linux).sublime-keymap",
-        ensure => 'file',
+        target => "/opt/devenv/puppet-modules/devenv/files/sublime-text-3/Default (Linux).sublime-keymap",
+        ensure => 'link',
         backup => 'sublime_text',
         owner  => $user,
     } ->
 
     file { "/home/${user}/.config/sublime-text-3/Packages/User/Package Control.sublime-settings":
-        source => "puppet:///modules/devenv/sublime-text-3/Package Control.sublime-settings",
-        ensure => 'file',
+        target => "/opt/devenv/puppet-modules/devenv/files/sublime-text-3/Package Control.sublime-settings",
+        ensure => 'link',
         backup => 'sublime_text',
         owner  => $user,
     } ->
 
     file { "/home/${user}/.config/sublime-text-3/Packages/User/Preferences.sublime-settings":
-        source => "puppet:///modules/devenv/sublime-text-3/Preferences.sublime-settings",
-        ensure => 'file',
+        target => "/opt/devenv/puppet-modules/devenv/files/sublime-text-3/Preferences.sublime-settings",
+        ensure => 'link',
         backup => 'sublime_text',
         owner  => $user,
     }

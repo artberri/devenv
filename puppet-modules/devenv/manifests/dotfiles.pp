@@ -5,29 +5,29 @@ class devenv::dotfiles ( $user ) {
     } ->
 
     file { "/home/${user}/.bashrc":
-        source => "puppet:///modules/devenv/dotfiles/.bashrc",
-        ensure => 'file',
+        target => "/opt/devenv/puppet-modules/devenv/files/dotfiles/.bashrc",
+        ensure => 'link',
         backup => 'dotfiles',
         owner  => $user,
     } ->
 
     file { "/home/${user}/.git-completion.bash":
-        source => "puppet:///modules/devenv/dotfiles/.git-completion.bash",
-        ensure => 'file',
+        target => "/opt/devenv/puppet-modules/devenv/files/dotfiles/.git-completion.bash",
+        ensure => 'link',
         backup => 'dotfiles',
         owner  => $user,
     } ->
 
     file { "/home/${user}/.git-prompt.sh":
-        source => "puppet:///modules/devenv/dotfiles/.git-prompt.sh",
-        ensure => 'file',
+        target => "/opt/devenv/puppet-modules/devenv/files/dotfiles/.git-prompt.sh",
+        ensure => 'link',
         backup => 'dotfiles',
         owner  => $user,
     } ->
 
     file { "/home/${user}/.zshrc":
-        source => "puppet:///modules/devenv/dotfiles/.zshrc",
-        ensure => 'file',
+        target => "/opt/devenv/puppet-modules/devenv/files/dotfiles/.zshrc",
+        ensure => 'link',
         backup => 'dotfiles',
         owner  => $user,
     }
