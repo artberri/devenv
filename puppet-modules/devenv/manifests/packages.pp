@@ -16,7 +16,6 @@ class devenv::packages {
         "vagrant",
         "vim",
         "virtualbox",
-        "wget",
         "whois",
         "zsh",
     ]

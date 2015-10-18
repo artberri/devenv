@@ -1,11 +1,24 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
+    darin-zypprepo (1.0.2)
+    example42-puppi (2.1.12)
+    example42-yum (2.1.24)
+      example42-puppi (>= 2.0.0)
     golja-gnupg (1.2.1)
     maestrodev-rvm (1.12.1)
       golja-gnupg (>= 1.2.0)
       puppetlabs-stdlib (>= 4.2.0)
+    mayflower-php (3.4.2)
+      darin-zypprepo (~> 1.0)
+      example42-yum (~> 2.0)
+      puppetlabs-apt (< 3.0.0, >= 1.0.0)
+      puppetlabs-inifile (~> 1.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
     proletaryo-nvm_nodejs (0.3.1)
+    puppetlabs-apt (2.2.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
+    puppetlabs-inifile (1.4.2)
     puppetlabs-stdlib (4.9.0)
 
 PATH
@@ -16,6 +29,7 @@ PATH
 DEPENDENCIES
   berri-devenv (= 0.0.1)
   maestrodev-rvm (= 1.12.1)
+  mayflower-php (= 3.4.2)
   proletaryo-nvm_nodejs (= 0.3.1)
   puppetlabs-stdlib (= 4.9.0)
 
