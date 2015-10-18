@@ -32,4 +32,18 @@ class devenv ( $user ) {
         version     => '0.12.7',
     }
 
+    rvm::system_user { $user: }
+
+    class { '::rvm': } ->
+
+    rvm_system_ruby { 'ruby-2.2.3':
+        ensure      => 'present',
+        default_use => true,
+    } ->
+
+    rvm_gem { 'bundler':
+        ensure  => present,
+        ruby_version => 'ruby-2.2.3',
+    }
+
 }
