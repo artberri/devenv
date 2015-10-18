@@ -55,6 +55,9 @@ class devenv (
     # Apache
     class { 'devenv::apache': } ->
 
+    # MariaDB
+    class { 'devenv::mariadb': } ->
+
     # Sublime Text 3
     class { 'devenv::sublime_text':
         user    => $user,

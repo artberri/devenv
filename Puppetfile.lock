@@ -15,6 +15,7 @@ FORGE
       puppetlabs-apt (< 3.0.0, >= 1.0.0)
       puppetlabs-inifile (~> 1.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
+    nanliu-staging (1.0.3)
     proletaryo-nvm_nodejs (0.3.1)
     puppetlabs-apache (1.6.0)
       puppetlabs-concat (< 2.0.0, >= 1.1.1)
@@ -24,7 +25,19 @@ FORGE
     puppetlabs-concat (1.2.4)
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs-inifile (1.4.2)
+    puppetlabs-mysql (3.6.1)
+      nanliu-staging (< 2.0.0, >= 1.0.1)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs-stdlib (4.9.0)
+
+GIT
+  remote: git://github.com/artberri/puppet-mariadbrepo.git
+  ref: master
+  sha: 70e5aca62d51ac450d1834c675659a6320f2eb2d
+  specs:
+    yguenane-mariadbrepo (0.2.1)
+      puppetlabs-apt (>= 2.0.0)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.1)
 
 PATH
   remote: ./puppet-modules/devenv
@@ -37,5 +50,7 @@ DEPENDENCIES
   mayflower-php (= 3.4.2)
   proletaryo-nvm_nodejs (= 0.3.1)
   puppetlabs-apache (= 1.6.0)
+  puppetlabs-mysql (= 3.6.1)
   puppetlabs-stdlib (= 4.9.0)
+  yguenane-mariadbrepo (>= 0)
 
