@@ -5,17 +5,32 @@
 	],
 	"installed_packages":
 	[
+		"Alignment",
+		"AutoFileName",
+		"BracketHighlighter",
+		"Can I Use",
 		"ColorPicker",
+		"CSScomb",
+		"DocBlockr",
+		"Emmet",
+		"FileDiffs",
 		"GitHub Flavored Markdown Preview",
 		"Grunt",
 		"MarkdownEditing",
+		"Modific",
 		"Package Control",
 		"Phpcs",
 		"Puppet",
 		"Sass",
 		"SideBarEnhancements",
+		"SideBarFolders",
+		"Solarized Color Scheme",
 		"SublimeLinter",
 		"SublimeLinter-contrib-eslint",
-		"SublimeLinter-contrib-puppet"
+		"SublimeLinter-contrib-puppet",
+		"SublimeLinter-contrib-scss-lint",
+		"Terminal",
+		"Theme - Sodarized",
+		"Zen Tabs"
 	]
 }

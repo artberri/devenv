@@ -1,0 +1,18 @@
+{
+    "user": {
+        "linters": {
+            "eslint": {
+                "@disable": false,
+                "args": [],
+                "excludes": []
+            }
+        },
+        "paths": {
+            "linux": [
+                "/usr/local/bin"
+            ],
+            "osx": [],
+            "windows": []
+        }
+    }
+}

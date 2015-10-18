@@ -35,6 +35,13 @@ class devenv::sublime_text ( $user ) {
         ensure => 'link',
         backup => 'sublime_text',
         owner  => $user,
+    } ->
+
+    file { "/home/${user}/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings":
+        target => "/opt/devenv/puppet-modules/devenv/files/sublime-text-3/SublimeLinter.sublime-settings",
+        ensure => 'link',
+        backup => 'sublime_text',
+        owner  => $user,
     }
 
 }
