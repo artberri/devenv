@@ -52,7 +52,7 @@ if [ "$OS_ID" == "Ubuntu" ] && [ "$OS_VERSION" == "15.04" ]; then
     fi
 
     echo "Applying puppet"
-    if ! sudo puppet apply --modulepath=/opt/devenv/modules -e "class { 'devenv': user => \"${USER}\" }"; then
+    if ! sudo puppet apply --modulepath=/opt/devenv/modules -e "class { 'devenv': user => \"${USER}\", shell => \"${SHELL}\", }"; then
        echo "Error: Puppet Modules not installed properly."
        exit 1
     fi

@@ -1,4 +1,7 @@
-class devenv ( $user ) {
+class devenv (
+        $user,
+        $shell
+    ) {
 
     Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin/" ] }
 
@@ -14,6 +17,11 @@ class devenv ( $user ) {
 
     class { 'devenv::dotfiles':
         user    => $user,
+    } ->
+
+    class { 'devenv::zsh':
+        user    => $user,
+        shell   => $shell,
     } ->
 
     class { 'devenv::sublime_text':
