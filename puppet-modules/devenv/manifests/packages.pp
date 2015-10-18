@@ -8,6 +8,7 @@ class devenv::packages {
         "gimp",
         "git",
         "inkscape",
+        "make",
         "python",
         "python-pip",
         "telnet",

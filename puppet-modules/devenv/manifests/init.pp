@@ -24,6 +24,12 @@ class devenv ( $user ) {
 
     class { 'devenv::sublime_text':
         user    => $user,
+    } ->
+
+    class { 'nvm_nodejs':
+        user        => $user,
+        manage_user => false,
+        version     => '0.12.7',
     }
 
 }

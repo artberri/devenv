@@ -1,3 +1,9 @@
+FORGE
+  remote: https://forgeapi.puppetlabs.com
+  specs:
+    proletaryo-nvm_nodejs (0.3.1)
+    puppetlabs-stdlib (4.9.0)
+
 PATH
   remote: ./puppet-modules/devenv
   specs:
@@ -5,4 +11,6 @@ PATH
 
 DEPENDENCIES
   berri-devenv (= 0.0.1)
+  proletaryo-nvm_nodejs (= 0.3.1)
+  puppetlabs-stdlib (= 4.9.0)
 

@@ -6,8 +6,8 @@ forge "https://forgeapi.puppetlabs.com"
 mod 'berri-devenv', "0.0.1", :path => './puppet-modules/devenv'
 
 # Modules from the Puppet Forge
-#mod 'puppetlabs-stdlib'
-#mod 'puppetlabs-reboot'
+mod 'puppetlabs-stdlib', '4.9.0'
+mod 'proletaryo-nvm_nodejs', '0.3.1'
 
 # A module from git
 # mod 'puppetlabs-ntp',
