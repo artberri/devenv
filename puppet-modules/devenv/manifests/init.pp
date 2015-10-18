@@ -52,6 +52,9 @@ class devenv (
     # PHP 5.6
     class { 'devenv::php': } ->
 
+    # Apache
+    class { 'devenv::apache': } ->
+
     # Sublime Text 3
     class { 'devenv::sublime_text':
         user    => $user,

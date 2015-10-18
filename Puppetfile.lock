@@ -16,8 +16,13 @@ FORGE
       puppetlabs-inifile (~> 1.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
     proletaryo-nvm_nodejs (0.3.1)
+    puppetlabs-apache (1.6.0)
+      puppetlabs-concat (< 2.0.0, >= 1.1.1)
+      puppetlabs-stdlib (< 5.0.0, >= 2.4.0)
     puppetlabs-apt (2.2.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
+    puppetlabs-concat (1.2.4)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs-inifile (1.4.2)
     puppetlabs-stdlib (4.9.0)
 
@@ -31,5 +36,6 @@ DEPENDENCIES
   maestrodev-rvm (= 1.12.1)
   mayflower-php (= 3.4.2)
   proletaryo-nvm_nodejs (= 0.3.1)
+  puppetlabs-apache (= 1.6.0)
   puppetlabs-stdlib (= 4.9.0)
 
