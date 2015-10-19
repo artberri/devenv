@@ -42,7 +42,7 @@ antigen-apply
 
 eval `dircolors ~/.dircolors-solarized/dircolors.ansi-dark`
 
-. ~/.nvm/nvm.sh
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Alias definitions.
 # enable color support of ls and also add handy aliases

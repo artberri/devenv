@@ -8,12 +8,23 @@ class devenv::powerline ($user) {
         path   => "/home/${user}/.fonts/",
     }
 
+    file { 'ensure ~/.config/fontconfig/ directory':
+        ensure => 'directory',
+        owner  => $user,
+        group  => $user,
+        mode   => '0750',
+        path   => "/home/${user}/.config/fontconfig/",
+        recurse => true,
+    }
+
     file { 'ensure ~/.config/fontconfig/conf.d/ directory':
         ensure => 'directory',
         owner  => $user,
         group  => $user,
         mode   => '0750',
         path   => "/home/${user}/.config/fontconfig/conf.d/",
+        recurse => true,
+        require => File['ensure ~/.config/fontconfig/ directory']
     }
 
     exec { 'download PowerlineSymbols.otf':
