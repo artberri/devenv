@@ -16,11 +16,25 @@ class devenv::sublime_text ( $user ) {
         path   => "/home/${user}/.sublime_text.bkp",
     } ->
 
+    file { ["/home/${user}/.config/sublime-text-3", "/home/${user}/.config/sublime-text-3/Packages", "/home/${user}/.config/sublime-text-3/Packages/User", "/home/${user}/.config/sublime-text-3/Installed Packages"]:
+        ensure  => 'directory',
+        recurse => true,
+        owner  => $user,
+        group  => $user,
+    } ->
+
+    exec { "Get sublime text package manager":
+        command => "wget -O /home/${user}/.config/sublime-text-3/Installed\\ Packages/Package\\ Control.sublime-package https://packagecontrol.io/Package%20Control.sublime-package",
+        require => Package['wget'],
+        creates => "/home/${user}/.config/sublime-text-3/Installed Packages/Package Control.sublime-package",
+    } ->
+
     file { "/home/${user}/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap":
         target => "/opt/devenv/puppet-modules/devenv/files/sublime-text-3/Default (Linux).sublime-keymap",
         ensure => 'link',
         backup => 'sublime_text',
         owner  => $user,
+        group  => $user,
     } ->
 
     file { "/home/${user}/.config/sublime-text-3/Packages/User/Package Control.sublime-settings":
@@ -28,6 +42,7 @@ class devenv::sublime_text ( $user ) {
         ensure => 'link',
         backup => 'sublime_text',
         owner  => $user,
+        group  => $user,
     } ->
 
     file { "/home/${user}/.config/sublime-text-3/Packages/User/Preferences.sublime-settings":
@@ -35,6 +50,7 @@ class devenv::sublime_text ( $user ) {
         ensure => 'link',
         backup => 'sublime_text',
         owner  => $user,
+        group  => $user,
     } ->
 
     file { "/home/${user}/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings":
@@ -42,6 +58,7 @@ class devenv::sublime_text ( $user ) {
         ensure => 'link',
         backup => 'sublime_text',
         owner  => $user,
+        group  => $user,
     }
 
 }

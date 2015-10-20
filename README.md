@@ -13,6 +13,19 @@ sudo apt-get install git
 git clone https://github.com/artberri/devenv.git /opt/devenv --recursive
 cd /opt/devenv
 /opt/devenv/bootstrap.sh
+chsh -s /bin/zsh
+reboot
+# After the reboot:
+~/.solarize/set_dark.sh
+# You should start sublime text, wait until the packages are installed and restart it.
+```
+
+## Updating
+
+```
+cd /opt/devenv
+git pull && git submodule foreach git pull origin master
+/opt/devenv/bootstrap.sh
 ```
 
 ## License

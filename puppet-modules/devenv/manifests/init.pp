@@ -1,6 +1,5 @@
 class devenv (
         $user,
-        $shell
     ) {
 
     # Set Path
@@ -55,12 +54,6 @@ class devenv (
     # Config files
     class { 'devenv::dotfiles':
         user    => $user,
-    } ->
-
-    # ZSH
-    class { 'devenv::zsh':
-        user    => $user,
-        shell   => $shell,
     } ->
 
     # Sublime Text 3
