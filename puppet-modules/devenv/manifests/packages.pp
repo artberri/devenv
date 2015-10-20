@@ -10,6 +10,7 @@ class devenv::packages {
         "gimp",
         "git",
         "inkscape",
+        "libappindicator1",
         "libgdbm3",
         "libgdbm-dev",
         "libffi-dev",

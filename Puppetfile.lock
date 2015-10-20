@@ -50,6 +50,7 @@ DEPENDENCIES
   mayflower-php (= 3.4.2)
   proletaryo-nvm_nodejs (= 0.3.1)
   puppetlabs-apache (= 1.6.0)
+  puppetlabs-apt (= 2.2.0)
   puppetlabs-mysql (= 3.6.1)
   puppetlabs-stdlib (= 4.9.0)
   yguenane-mariadbrepo (>= 0)

@@ -4,12 +4,17 @@ class devenv::sublime_text ( $user ) {
         command => "wget -O /opt/sublime-text_build-3083_amd64.deb http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb",
         require => Package['wget'],
         creates => "/opt/sublime-text_build-3083_amd64.deb",
+        unless  => "/usr/bin/test -s /opt/sublime_text/sublime_text",
     } ->
 
     package { "sublime-text":
         provider => dpkg,
         ensure => installed,
         source => "/opt/sublime-text_build-3083_amd64.deb"
+    } ->
+
+    file { "/opt/sublime-text_build-3083_amd64.deb":
+        ensure => absent,
     } ->
 
     filebucket { 'sublime_text':

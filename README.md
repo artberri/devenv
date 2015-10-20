@@ -9,6 +9,7 @@ Requires [Ubuntu 15.04 (Vivid Vervet)](http://releases.ubuntu.com/15.04/).
 ## Installation
 
 ```
+sudo chmod a+w /opt
 sudo apt-get install git
 git clone https://github.com/artberri/devenv.git /opt/devenv --recursive
 cd /opt/devenv

@@ -61,4 +61,7 @@ class devenv (
         user    => $user,
     }
 
+    # Chrome
+    class { 'devenv::chrome': }
+
 }
