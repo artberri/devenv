@@ -1,4 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
+export NVM_DIR=~/.nvm
+export ANDROID_HOME=/usr/local/android/android-sdk-linux
+export PATH=$PATH:/usr/local/android/android-sdk-linux/tools:/usr/local/android/android-sdk-linux/platform-tools
 
 # If not running interactively, don't do anything
 case $- in

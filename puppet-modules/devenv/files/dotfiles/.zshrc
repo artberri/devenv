@@ -1,3 +1,7 @@
+export NVM_DIR=~/.nvm
+export ANDROID_HOME=/usr/local/android/android-sdk-linux
+export PATH=$PATH:/usr/local/android/android-sdk-linux/tools:/usr/local/android/android-sdk-linux/platform-tools
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
