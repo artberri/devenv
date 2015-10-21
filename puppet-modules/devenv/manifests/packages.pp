@@ -2,6 +2,7 @@ class devenv::packages {
 
     # Installing packages
     $packages = [
+        "aptitude",
         "autoconf",
         "bison",
         "build-essential",
@@ -19,6 +20,7 @@ class devenv::packages {
         "libssl-dev",
         "make",
         "python",
+        "python-gpgme",
         "python-pip",
         "telnet",
         "ttf-mscorefonts-installer",

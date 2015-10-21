@@ -20,3 +20,7 @@ mod 'yguenane-mariadbrepo',
 
 mod 'maestrodev-android',
   :git => "git://github.com/artberri/puppet-android.git"
+
+mod 'rcoleman-dropbox',
+  :git => "git://github.com/cpick/puppet-module-dropbox.git",
+  :ref => "new-apt-module"

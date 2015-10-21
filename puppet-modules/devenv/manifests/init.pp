@@ -65,6 +65,9 @@ class devenv (
     class { 'devenv::chrome': } ->
 
     # Android
-    class { 'devenv::android': }
+    class { 'devenv::android': } ->
+
+    # Dropbox
+    class { 'dropbox': }
 
 }

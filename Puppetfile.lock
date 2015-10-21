@@ -50,6 +50,14 @@ GIT
       puppetlabs-apt (>= 2.0.0)
       puppetlabs-stdlib (< 5.0.0, >= 3.2.1)
 
+GIT
+  remote: git://github.com/cpick/puppet-module-dropbox.git
+  ref: new-apt-module
+  sha: 5b60da65aa13172ca9e8dbec5dbdc49ae56f1fad
+  specs:
+    rcoleman-dropbox (0.2.0)
+      puppetlabs-apt (>= 2.0.0)
+
 PATH
   remote: ./puppet-modules/devenv
   specs:
@@ -65,6 +73,7 @@ DEPENDENCIES
   puppetlabs-apt (= 2.2.0)
   puppetlabs-mysql (= 3.6.1)
   puppetlabs-stdlib (= 4.9.0)
+  rcoleman-dropbox (>= 0)
   tylerwalts-jdk_oracle (= 1.4.0)
   yguenane-mariadbrepo (>= 0)
 
