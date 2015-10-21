@@ -12,6 +12,7 @@ class devenv::php {
         phpunit      => true,
         composer     => true,
         extensions   => {
+            'curl'    => {},
             'gd'      => {},
             'imagick' => {},
             'json'    => {},
