@@ -13,6 +13,10 @@ mod 'puppetlabs-apt', '2.2.0'
 mod 'proletaryo-nvm_nodejs', '0.3.1'
 mod 'maestrodev-rvm', '1.12.1'
 mod 'mayflower-php', '3.4.2'
+mod 'tylerwalts-jdk_oracle', '1.4.0'
 
 mod 'yguenane-mariadbrepo',
   :git => "git://github.com/artberri/puppet-mariadbrepo.git"
+
+mod 'maestrodev-android',
+  :git => "git://github.com/artberri/puppet-android.git"

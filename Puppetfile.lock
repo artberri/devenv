@@ -9,6 +9,7 @@ FORGE
     maestrodev-rvm (1.12.1)
       golja-gnupg (>= 1.2.0)
       puppetlabs-stdlib (>= 4.2.0)
+    maestrodev-wget (1.7.1)
     mayflower-php (3.4.2)
       darin-zypprepo (~> 1.0)
       example42-yum (~> 2.0)
@@ -29,6 +30,16 @@ FORGE
       nanliu-staging (< 2.0.0, >= 1.0.1)
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs-stdlib (4.9.0)
+    tylerwalts-jdk_oracle (1.4.0)
+
+GIT
+  remote: git://github.com/artberri/puppet-android.git
+  ref: master
+  sha: f5c0ce31f155f1063433338db99f8c03ff3dd2bd
+  specs:
+    maestrodev-android (1.2.1)
+      maestrodev-wget (>= 1.0.0)
+      puppetlabs-stdlib (>= 3.2.0)
 
 GIT
   remote: git://github.com/artberri/puppet-mariadbrepo.git
@@ -46,6 +57,7 @@ PATH
 
 DEPENDENCIES
   berri-devenv (= 0.0.1)
+  maestrodev-android (>= 0)
   maestrodev-rvm (= 1.12.1)
   mayflower-php (= 3.4.2)
   proletaryo-nvm_nodejs (= 0.3.1)
@@ -53,5 +65,6 @@ DEPENDENCIES
   puppetlabs-apt (= 2.2.0)
   puppetlabs-mysql (= 3.6.1)
   puppetlabs-stdlib (= 4.9.0)
+  tylerwalts-jdk_oracle (= 1.4.0)
   yguenane-mariadbrepo (>= 0)
 

@@ -59,9 +59,12 @@ class devenv (
     # Sublime Text 3
     class { 'devenv::sublime_text':
         user    => $user,
-    }
+    } ->
 
     # Chrome
-    class { 'devenv::chrome': }
+    class { 'devenv::chrome': } ->
+
+    # Android
+    class { 'devenv::android': }
 
 }

@@ -47,7 +47,7 @@ if [ "$OS_ID" == "Ubuntu" ] && [ "$OS_VERSION" == "15.04" ]; then
     if librarian-puppet install >/dev/null 2>/dev/null; then
        echo "Puppet Modules installed."
     else
-       echo "Error installing puppet modules."
+       echo "Error: Can not install the puppet modules. Run 'librarian-puppet install --verbose' to debug."
        exit 1
     fi
 
