@@ -2,12 +2,14 @@ class devenv::packages {
 
     # Installing packages
     $packages = [
+        "ant",
         "aptitude",
         "autoconf",
         "bison",
         "build-essential",
         "curl",
         "dconf-cli",
+        "filezilla",
         "gimp",
         "git",
         "inkscape",
@@ -25,6 +27,7 @@ class devenv::packages {
         "python",
         "python-gpgme",
         "python-pip",
+        "shutter",
         "telnet",
         "ttf-mscorefonts-installer",
         "vagrant",
