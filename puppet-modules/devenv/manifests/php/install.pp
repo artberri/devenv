@@ -1,8 +1,7 @@
-class devenv::php {
+class devenv::php::install {
 
-    class { '::php::repo::ubuntu':
-        ppa => 'ondrej/php5-5.6',
-    } ->
+    # Added manually to avoid continous execution
+    class { 'devenv::php::repo': } ->
 
     class { '::php':
         manage_repos => false,

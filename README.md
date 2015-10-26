@@ -26,7 +26,7 @@ reboot
 ```
 cd /opt/devenv
 git pull && git submodule foreach git pull origin master
-/opt/devenv/bootstrap.sh
+devenv
 ```
 
 ## License

@@ -2,6 +2,14 @@
 OS_VERSION=`lsb_release --release | cut -f2`
 OS_ID=`lsb_release --id | cut -f2`
 USER=$(whoami)
+DEVENV_PATH=/opt/devenv
+
+if [[ $EUID -eq 0 ]]; then
+  echo "This script must NOT be run as root" 1>&2
+  exit 1
+fi
+
+cd $DEVENV_PATH
 
 if [ "$OS_ID" == "Ubuntu" ] && [ "$OS_VERSION" == "15.04" ]; then
 
@@ -52,7 +60,7 @@ if [ "$OS_ID" == "Ubuntu" ] && [ "$OS_VERSION" == "15.04" ]; then
     fi
 
     echo "Applying puppet"
-    if ! sudo puppet apply --modulepath=/opt/devenv/modules -e "class { 'devenv': user => \"${USER}\", }"; then
+    if ! sudo puppet apply --modulepath=${DEVENV_PATH}/modules -e "class { 'devenv': user => \"${USER}\", }"; then
        echo "Error: Puppet Modules not installed properly."
        exit 1
     fi
@@ -62,3 +70,5 @@ else
     echo "Try installing puppet by hand"
     exit 1
 fi
+
+cd - >/dev/null

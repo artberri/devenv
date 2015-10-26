@@ -8,38 +8,14 @@ class devenv (
     # Basic Packages
     class { 'devenv::packages': } ->
 
-  /*  # Ruby (RVM)
-    class { '::rvm':
-        system_users  => $user,
-        system_rubies => {
-            'ruby-2.2.3' => {
-                ensure      => 'present',
-                default_use => true,
-            }
-        },
-        rvm_gems      => {
-            'bundler' => {
-                ensure  => present,
-                ruby_version => 'ruby-2.2.3',
-            }
-        }
-    } ->*/
-
     # Node (NVM)
-    class { 'nvm_nodejs':
-        user        => $user,
-        manage_user => false,
-        version     => '0.12.7',
-    } ->
+    class { 'devenv::nodejs': } ->
 
     # PHP 5.6
-    class { 'devenv::php': } ->
+    class { 'devenv::php::install': } ->
 
     # Apache
     class { 'devenv::apache': } ->
-
- /*   # MariaDB
-    class { 'devenv::mariadb': } ->*/
 
     # Powerline
     class { 'devenv::powerline':
@@ -68,6 +44,13 @@ class devenv (
     class { 'devenv::android': } ->
 
     # Dropbox
-    class { 'dropbox': }
+    class { 'dropbox': } ->
+
+    file { '/usr/local/bin/devenv':
+        target => "/opt/devenv/bootstrap.sh",
+        ensure => 'link',
+        owner  => 'root',
+        group  => 'root',
+    }
 
 }
