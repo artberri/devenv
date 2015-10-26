@@ -173,31 +173,6 @@ function killps()   # kill by process name
     done
 }
 
-function mydf()         # Pretty-print of 'df' output.
-{                       # Inspired by 'dfc' utility.
-    for fs ; do
-
-        if [ ! -d $fs ]
-        then
-          echo -e $fs" :No such file or directory" ; continue
-        fi
-
-        local info=( $(command df -P $fs | awk 'END{ print $2,$3,$5 }') )
-        local free=( $(command df -Pkh $fs | awk 'END{ print $4 }') )
-        local nbstars=$(( 20 * ${info[1]} / ${info[0]} ))
-        local out="["
-        for ((j=0;j<20;j++)); do
-            if [ ${j} -lt ${nbstars} ]; then
-               out=$out"*"
-            else
-               out=$out"-"
-            fi
-        done
-        out=${info[2]}" "$out"] ("$free" free on "$fs")"
-        echo -e $out
-    done
-}
-
 function myip() # Get IP adress on ethernet.
 {
     MY_IP=$(/sbin/ifconfig eth0 | awk '/inet/ { print $2 } ' |
@@ -214,15 +189,7 @@ function ii()   # Get current host related info.
     echo -e "\n${BRed}Current date :$NC " ; date
     echo -e "\n${BRed}Machine stats :$NC " ; uptime
     echo -e "\n${BRed}Memory stats :$NC " ; free
-    echo -e "\n${BRed}Diskspace :$NC " ; mydf / $HOME
+    echo -e "\n${BRed}Diskspace :$NC " ; df
     echo -e "\n${BRed}Local IP Address :$NC" ; myip
     echo
-}
-
-function set-title() {
-    if [[ -z "$ORIG" ]]; then
-        ORIG=$PS1
-    fi
-    TITLE="\[\e]2;$@\a\]"
-    PS1=${ORIG}${TITLE}
 }
