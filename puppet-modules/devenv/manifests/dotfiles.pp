@@ -30,6 +30,13 @@ class devenv::dotfiles ( $user ) {
         ensure => 'link',
         backup => 'dotfiles',
         owner  => $user,
+    } ->
+
+    file { "/home/${user}/.tmux.conf":
+        target => "/opt/devenv/puppet-modules/devenv/files/dotfiles/.tmux.conf",
+        ensure => 'link',
+        backup => 'dotfiles',
+        owner  => $user,
     }
 
 }

@@ -53,7 +53,7 @@
 	],
 	"save_on_focus_lost": true,
 	"show_encoding": true,
-	"theme": "Sodarized Dark 3.sublime-theme",
+	"theme": "Default.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"use_tab_stops": true,
