@@ -26,7 +26,9 @@ class devenv::packages {
         "nfs-common",
         "python",
         "python-gpgme",
+        "python-gtk2",
         "python-pip",
+        "python-wnck",
         "shutter",
         "telnet",
         "tmux",
@@ -36,6 +38,8 @@ class devenv::packages {
         "vim",
         "virtualbox",
         "whois",
+        "wmctrl",
+        "xtrlock",
         "zlib1g-dev",
         "zsh",
     ]

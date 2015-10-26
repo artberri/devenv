@@ -64,6 +64,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias du='du -kh'
 alias df='df -kTh'
+alias lock='/opt/devenv/puppet-modules/devenv/files/minimize.py;wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz;xtrlock &; cmatrix -s;'
 
 # TMUX
 if which tmux >/dev/null 2>&1; then
@@ -76,6 +77,8 @@ if which tmux >/dev/null 2>&1; then
         fi
     fi
 fi
+
+wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 
 
 #-------------------------------------------------------------
