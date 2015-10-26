@@ -64,6 +64,12 @@ class devenv::sublime_text ( $user ) {
         backup => 'sublime_text',
         owner  => $user,
         group  => $user,
+    } ->
+
+    file { "/usr/local/bin/sublime":
+        target => "/opt/sublime_text/sublime_text",
+        ensure => 'link',
+        owner  => 'root',
     }
 
 }
