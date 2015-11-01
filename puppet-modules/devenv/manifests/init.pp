@@ -9,7 +9,9 @@ class devenv (
     class { 'devenv::packages': } ->
 
     # Node (NVM)
-    class { 'devenv::nodejs': } ->
+    class { 'devenv::nodejs':
+        user    => $user,
+    } ->
 
     # PHP 5.6
     class { 'devenv::php::install': } ->

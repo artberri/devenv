@@ -1,9 +1,10 @@
-class devenv::nodejs {
+class devenv::nodejs ($user) {
 
-    class { 'nvm_nodejs':
-        user        => $user,
-        manage_user => false,
-        version     => '0.12.7',
+    class { 'nvm':
+        user                => $user,
+        install_node        => '0.12.7',
+        manage_dependencies => false,
+        manage_profile      => false,
     }
 
 }

@@ -92,6 +92,8 @@ if which tmux >/dev/null 2>&1; then
     fi
 fi
 
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 
 #-------------------------------------------------------------
 # File & strings related functions:
@@ -248,5 +250,3 @@ export GIT_PS1_SHOWCOLORHINTS=1
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
 PS1=$PS1'$(__git_ps1 "(%s)" )\$ '
-export NVM_DIR="/home/avarela/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
