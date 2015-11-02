@@ -48,6 +48,12 @@ class devenv (
     # Dropbox
     class { 'dropbox': } ->
 
+    # Rainbowstream (twitter)
+    class { 'devenv::rainbowstream':
+        user    => $user,
+    } ->
+
+    # devenv command
     file { '/usr/local/bin/devenv':
         target => "/opt/devenv/bootstrap.sh",
         ensure => 'link',
