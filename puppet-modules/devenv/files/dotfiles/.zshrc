@@ -64,6 +64,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias du='du -kh'
 alias df='df -kTh'
+alias tw='rainbowstream'
 alias lock='/opt/devenv/puppet-modules/devenv/files/minimize.py;wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz;xtrlock &; cmatrix -s;'
 
 # TMUX
