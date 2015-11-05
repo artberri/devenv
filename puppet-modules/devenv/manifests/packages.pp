@@ -34,6 +34,7 @@ class devenv::packages {
         "tmux",
         "toilet",
         "ttf-mscorefonts-installer",
+        "unrar",
         "vagrant",
         "vim",
         "virtualbox",
