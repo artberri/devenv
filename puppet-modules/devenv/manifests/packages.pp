@@ -34,6 +34,7 @@ class devenv::packages {
         'telnet',
         'tmux',
         'toilet',
+        'traceroute',
         'ttf-mscorefonts-installer',
         'unrar',
         'vagrant',
