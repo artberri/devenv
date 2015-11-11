@@ -8,6 +8,11 @@ class devenv (
     # Basic Packages
     class { 'devenv::packages': } ->
 
+    # Vim
+    class { 'devenv::vim':
+        user    => $user,
+    } ->
+
     # Node (NVM)
     class { 'devenv::nodejs':
         user    => $user,

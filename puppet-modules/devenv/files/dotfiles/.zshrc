@@ -40,6 +40,7 @@ antigen bundle vagrant
 antigen bundle zsh-users/zsh-completions src
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle kennethreitz/autoenv
+antigen bundle chrissicool/zsh-256color
 
 antigen-theme agnoster
 antigen-apply

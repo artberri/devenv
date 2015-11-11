@@ -37,6 +37,13 @@ class devenv::dotfiles ( $user ) {
         ensure => 'link',
         backup => 'dotfiles',
         owner  => $user,
+    } ->
+
+    file { "/home/${user}/.vimrc":
+        target => "/opt/devenv/puppet-modules/devenv/files/dotfiles/.vimrc",
+        ensure => 'link',
+        backup => 'dotfiles',
+        owner  => $user,
     }
 
 }
