@@ -14,6 +14,7 @@ class devenv::packages {
         'font-manager',
         'gimp',
         'git',
+        'graphviz',
         'inkscape',
         'libappindicator1',
         'libgdbm3',
