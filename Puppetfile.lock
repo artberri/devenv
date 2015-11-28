@@ -3,11 +3,20 @@ FORGE
   specs:
     artberri-nvm (0.1.0)
       puppetlabs-stdlib (>= 1.0.0)
+    ceritsc-yum (0.9.6)
+      puppetlabs-stdlib (>= 4.0.0)
     darin-zypprepo (1.0.2)
+    elasticsearch-logstash (0.5.1)
+      ispavailability-file_concat (>= 0.1.0)
+      puppetlabs-stdlib (>= 3.2.0)
+    evenup-kibana (2.2.0)
+      maestrodev-wget (>= 0)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     example42-puppi (2.1.12)
     example42-yum (2.1.24)
       example42-puppi (>= 2.0.0)
     golja-gnupg (1.2.1)
+    ispavailability-file_concat (0.3.0)
     maestrodev-rvm (1.12.1)
       golja-gnupg (>= 1.2.0)
       puppetlabs-stdlib (>= 4.2.0)
@@ -31,6 +40,7 @@ FORGE
       nanliu-staging (< 2.0.0, >= 1.0.1)
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs-stdlib (4.9.0)
+    richardc-datacat (0.6.2)
     tylerwalts-jdk_oracle (1.4.0)
 
 GIT
@@ -59,14 +69,34 @@ GIT
     rcoleman-dropbox (0.2.0)
       puppetlabs-apt (>= 2.0.0)
 
+GIT
+  remote: git://github.com/elastic/puppet-elasticsearch.git
+  ref: 9135e4fd66b4829a4a0896d035a531cc782dce33
+  sha: 9135e4fd66b4829a4a0896d035a531cc782dce33
+  specs:
+    elasticsearch-elasticsearch (0.9.9)
+      ceritsc-yum (< 1.0.0, >= 0.9.6)
+      puppetlabs-apt (< 3.0.0, >= 1.4.0)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
+      richardc-datacat (< 1.0.0, >= 0.6.2)
+
 PATH
   remote: ./puppet-modules/devenv
   specs:
     berri-devenv (0.0.1)
 
+PATH
+  remote: ./puppet-modules/elk
+  specs:
+    elk (0.0.1)
+
 DEPENDENCIES
   artberri-nvm (= 0.1.0)
   berri-devenv (= 0.0.1)
+  elasticsearch-elasticsearch (>= 0)
+  elasticsearch-logstash (= 0.5.1)
+  elk (= 0.0.1)
+  evenup-kibana (= 2.2.0)
   maestrodev-android (>= 0)
   maestrodev-rvm (= 1.12.1)
   mayflower-php (= 3.4.2)
