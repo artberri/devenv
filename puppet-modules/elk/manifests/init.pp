@@ -55,7 +55,7 @@ class elk (
         }
 
         logstash::configfile { 'logstash-terminal':
-            source => 'puppet:///modules/elk/terminal.conf',
+            source => 'puppet:///modules/elk/logstash.apache.conf',
         }
 
     }
