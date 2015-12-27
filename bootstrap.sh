@@ -31,62 +31,76 @@ done
 
 cd $DEVENV_PATH
 
-if [ "$OS_ID" == "Ubuntu" ] && [ "$OS_VERSION" == "15.04" ]; then
+if [ "$OS_ID" == "Ubuntu" ]; then
 
-    echo "Ubuntu 15.04 detected"
+    if [ "$OS_VERSION" == "15.04" ] || [ "$OS_VERSION" == "15.10" ]; then
 
-    if ! type "puppet" > /dev/null 2> /dev/null; then
+        echo "Ubuntu $OS_VERSION detected"
 
-        echo "Adding puppetlabs repo"
-        wget https://apt.puppetlabs.com/puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null
-        sudo dpkg -i puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null
-        rm puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null
+        if ! type "puppet" > /dev/null 2> /dev/null; then
 
-        echo "Downloading the package lists"
-        sudo apt-get update >/dev/null 2>/dev/null
+            echo "Adding puppetlabs repo"
+            if [ "$OS_VERSION" == "15.04" ]; then
+                wget https://apt.puppetlabs.com/puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null
+                sudo dpkg -i puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null
+                rm puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null
+            else
+                wget https://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb >/dev/null 2>/dev/null
+                sudo dpkg -i puppetlabs-release-pc1-wheezy.deb >/dev/null 2>/dev/null
+                rm puppetlabs-release-pc1-wheezy.deb >/dev/null 2>/dev/null
+            fi
 
-        echo "Installing puppet"
-        if sudo apt-get install -y ruby puppet >/dev/null 2>/dev/null; then
-            echo "Package puppet installed."
+            echo "Downloading the package lists"
+            sudo apt-get update >/dev/null 2>/dev/null
+
+            echo "Installing puppet"
+            if sudo apt-get install -y ruby puppet >/dev/null 2>/dev/null; then
+                echo "Package puppet installed."
+            else
+                echo "Error: Package puppet is not installed."
+                exit 1
+            fi
+
         else
-           echo "Error: Package puppet is not installed."
+            echo "Puppet already installed."
+        fi
+
+        if ! type "librarian-puppet" > /dev/null 2>/dev/null; then
+
+            echo "Installing librarian-puppet"
+            if sudo gem install librarian-puppet >/dev/null 2>/dev/null; then
+               echo "Gem librarian-puppet installed."
+            else
+               echo "Error: gem librarian-puppet is not installed."
+               exit 1
+            fi
+
+        else
+            echo "librarian-puppet already installed."
+        fi
+
+        echo "Installing puppet modules"
+        if librarian-puppet install >/dev/null 2>/dev/null; then
+           echo "Puppet Modules installed."
+        else
+           echo "Error: Can not install the puppet modules. Run 'librarian-puppet install --verbose' to debug."
+           exit 1
+        fi
+
+        echo "Applying puppet"
+        if ! sudo puppet apply --modulepath=${DEVENV_PATH}/modules -e "class { 'devenv': user => \"${USER}\", elk => ${INSTALL_ELK}, }"; then
+           echo "Error: Puppet Modules not installed properly."
            exit 1
         fi
 
     else
-        echo "Puppet already installed."
-    fi
-
-    if ! type "librarian-puppet" > /dev/null 2>/dev/null; then
-
-        echo "Installing librarian-puppet"
-        if sudo gem install librarian-puppet >/dev/null 2>/dev/null; then
-           echo "Gem librarian-puppet installed."
-        else
-           echo "Error: gem librarian-puppet is not installed."
-           exit 1
-        fi
-
-    else
-        echo "librarian-puppet already installed."
-    fi
-
-    echo "Installing puppet modules"
-    if librarian-puppet install >/dev/null 2>/dev/null; then
-       echo "Puppet Modules installed."
-    else
-       echo "Error: Can not install the puppet modules. Run 'librarian-puppet install --verbose' to debug."
-       exit 1
-    fi
-
-    echo "Applying puppet"
-    if ! sudo puppet apply --modulepath=${DEVENV_PATH}/modules -e "class { 'devenv': user => \"${USER}\", elk => ${INSTALL_ELK}, }"; then
-       echo "Error: Puppet Modules not installed properly."
-       exit 1
+        echo "This script is customized only for Ubuntu 15.04 or Ubuntu 15.10 you are using $OS_ID $OS_VERSION"
+        echo "Try installing puppet by hand"
+        exit 1
     fi
 
 else
-    echo "This script is customized only for Ubuntu 15.04 you are using $OS_ID $OS_VERSION"
+    echo "This script is customized only for Ubuntu you are using $OS_ID "
     echo "Try installing puppet by hand"
     exit 1
 fi

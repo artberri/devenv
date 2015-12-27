@@ -21,12 +21,14 @@ mod 'elasticsearch-elasticsearch',
     :ref => "9135e4fd66b4829a4a0896d035a531cc782dce33"
 mod 'evenup-kibana', '2.2.0'
 
-mod 'yguenane-mariadbrepo',
-  :git => "git://github.com/artberri/puppet-mariadbrepo.git"
+mod 'artberri/mariadbrepo',
+    :git => 'https://github.com/artberri/puppet-mariadbrepo.git',
+    :ref => 'upgrade-apt-dependency'
 
 mod 'maestrodev-android',
-  :git => "git://github.com/artberri/puppet-android.git"
+    :git => "git://github.com/artberri/puppet-android.git",
+    :ref => '043318805f48fd4fb39eec2ab4b028a5184a4a2b'
 
 mod 'rcoleman-dropbox',
-  :git => "git://github.com/cpick/puppet-module-dropbox.git",
-  :ref => "new-apt-module"
+    :git => "git://github.com/cpick/puppet-module-dropbox.git",
+    :ref => "new-apt-module"

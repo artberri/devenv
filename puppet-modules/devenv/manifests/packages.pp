@@ -31,7 +31,6 @@ class devenv::packages {
         'python',
         'python-gpgme',
         'python-gtk2',
-        'python-pip',
         'python-wnck',
         'shutter',
         'telnet',

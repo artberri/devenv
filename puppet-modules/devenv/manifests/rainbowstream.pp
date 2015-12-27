@@ -3,7 +3,6 @@ class devenv::rainbowstream ($user) {
     exec { 'install rainbowstream':
         command => 'pip install rainbowstream',
         user    => 'root',
-        require => Package['python-pip'],
         creates => '/usr/local/bin/rainbowstream',
     } ->
 

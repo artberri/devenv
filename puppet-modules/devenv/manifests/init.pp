@@ -30,6 +30,9 @@ class devenv (
     # Apache
     class { 'devenv::apache': } ->
 
+    # MariaDB
+    class { 'devenv::mariadb': } ->
+
     # Powerline
     class { 'devenv::powerline':
         user    => $user,
