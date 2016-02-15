@@ -53,6 +53,11 @@ class devenv (
         user    => $user,
     } ->
 
+    # VS Code
+    class { 'devenv::vscode':
+        user    => $user,
+    } ->
+
     # Chrome
     class { 'devenv::chrome': } ->
 

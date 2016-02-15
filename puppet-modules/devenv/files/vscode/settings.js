@@ -1,0 +1,6 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.renderWhitespace": true,
+    "files.trimTrailingWhitespace": true,
+    "files.autoSave": "onFocusChange"
+}
