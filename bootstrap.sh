@@ -33,7 +33,7 @@ cd $DEVENV_PATH
 
 if [ "$OS_ID" == "Ubuntu" ]; then
 
-    if [ "$OS_VERSION" == "15.04" ] || [ "$OS_VERSION" == "15.10" ]; then
+    if [ "$OS_VERSION" == "15.04" ] || [ "$OS_VERSION" == "15.10" ] || [ "$OS_VERSION" == "16.04" ]; then
 
         echo "Ubuntu $OS_VERSION detected"
 
@@ -44,10 +44,14 @@ if [ "$OS_ID" == "Ubuntu" ]; then
                 wget https://apt.puppetlabs.com/puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null
                 sudo dpkg -i puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null
                 rm puppetlabs-release-pc1-vivid.deb >/dev/null 2>/dev/null
-            else
+            elif [ "$OS_VERSION" == "15.10" ]; then
                 wget https://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb >/dev/null 2>/dev/null
                 sudo dpkg -i puppetlabs-release-pc1-wheezy.deb >/dev/null 2>/dev/null
                 rm puppetlabs-release-pc1-wheezy.deb >/dev/null 2>/dev/null
+            else
+                wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb >/dev/null 2>/dev/null
+                sudo dpkg -i puppetlabs-release-pc1-xenial.deb >/dev/null 2>/dev/null
+                rm puppetlabs-release-pc1-xenial.deb >/dev/null 2>/dev/null
             fi
 
             echo "Downloading the package lists"
@@ -94,7 +98,7 @@ if [ "$OS_ID" == "Ubuntu" ]; then
         fi
 
     else
-        echo "This script is customized only for Ubuntu 15.04 or Ubuntu 15.10 you are using $OS_ID $OS_VERSION"
+        echo "This script is customized only for Ubuntu 15.04, 15.10 or 16.04 you are using $OS_ID $OS_VERSION"
         echo "Try installing puppet by hand"
         exit 1
     fi

@@ -45,10 +45,10 @@ FORGE
 
 GIT
   remote: git://github.com/artberri/puppet-android.git
-  ref: 043318805f48fd4fb39eec2ab4b028a5184a4a2b
-  sha: 043318805f48fd4fb39eec2ab4b028a5184a4a2b
+  ref: 7851859edc4f1d0b1d18d127ceb2568620859443
+  sha: 7851859edc4f1d0b1d18d127ceb2568620859443
   specs:
-    maestrodev-android (1.2.1)
+    maestrodev-android (1.3.2)
       maestrodev-wget (>= 1.0.0)
       puppetlabs-stdlib (>= 3.2.0)
 
@@ -88,15 +88,15 @@ PATH
 PATH
   remote: ./puppet-modules/elk
   specs:
-    elk (0.0.1)
+    berri-elk (0.0.1)
 
 DEPENDENCIES
   artberri-mariadbrepo (>= 0)
   artberri-nvm (= 0.1.0)
   berri-devenv (= 0.0.1)
+  berri-elk (= 0.0.1)
   elasticsearch-elasticsearch (>= 0)
   elasticsearch-logstash (= 0.5.1)
-  elk (= 0.0.1)
   evenup-kibana (= 2.2.0)
   maestrodev-android (>= 0)
   maestrodev-rvm (= 1.12.1)

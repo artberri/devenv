@@ -4,7 +4,7 @@ forge "https://forgeapi.puppetlabs.com"
 
 # Local modules
 mod 'berri-devenv', "0.0.1", :path => './puppet-modules/devenv'
-mod 'elk', "0.0.1", :path => './puppet-modules/elk'
+mod 'berri-elk', "0.0.1", :path => './puppet-modules/elk'
 
 # Modules from the Puppet Forge
 mod 'puppetlabs-stdlib', '4.9.0'
@@ -27,7 +27,7 @@ mod 'artberri/mariadbrepo',
 
 mod 'maestrodev-android',
     :git => "git://github.com/artberri/puppet-android.git",
-    :ref => '043318805f48fd4fb39eec2ab4b028a5184a4a2b'
+    :ref => '7851859edc4f1d0b1d18d127ceb2568620859443'
 
 mod 'rcoleman-dropbox',
     :git => "git://github.com/cpick/puppet-module-dropbox.git",
