@@ -250,3 +250,6 @@ export GIT_PS1_SHOWCOLORHINTS=1
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
 PS1=$PS1'$(__git_ps1 "(%s)" )\$ '
+
+# added by travis gem
+[ -f /home/alberto/.travis/travis.sh ] && source /home/alberto/.travis/travis.sh

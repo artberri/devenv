@@ -195,3 +195,6 @@ function ii()   # Get current host related info.
     echo -e "\n${BRed}Local IP Address :$NC" ; myip
     echo
 }
+
+# added by travis gem
+[ -f /home/alberto/.travis/travis.sh ] && source /home/alberto/.travis/travis.sh
