@@ -3,24 +3,19 @@ OS_VERSION=`lsb_release --release | cut -f2`
 OS_ID=`lsb_release --id | cut -f2`
 USER=$(whoami)
 DEVENV_PATH=/opt/devenv
-INSTALL_ELK="false"
 
 if [[ $EUID -eq 0 ]]; then
   echo "This script must NOT be run as root" 1>&2
   exit 1
 fi
 
-while getopts ":he" opt; do
+while getopts ":h" opt; do
   case ${opt} in
     h )
       echo "Usage: devenv [OPTION]"
       echo "Options"
       echo "    -h                   Display this help message."
-      echo "    -e                   Install also the ELK stack."
       exit 0
-      ;;
-    e )
-      INSTALL_ELK="true"
       ;;
     \? )
       echo "Invalid Option: -${OPTARG}. Get help with: devenv -h " 1>&2
@@ -92,7 +87,7 @@ if [ "$OS_ID" == "Ubuntu" ]; then
         fi
 
         echo "Applying puppet"
-        if ! sudo puppet apply --modulepath=${DEVENV_PATH}/modules -e "class { 'devenv': user => \"${USER}\", elk => ${INSTALL_ELK}, }"; then
+        if ! sudo puppet apply --modulepath=${DEVENV_PATH}/modules -e "class { 'devenv': user => \"${USER}\", }"; then
            echo "Error: Puppet Modules not installed properly."
            exit 1
         fi

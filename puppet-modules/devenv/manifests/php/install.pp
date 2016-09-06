@@ -1,10 +1,10 @@
 class devenv::php::install {
 
     # Added manually to avoid continous execution
-    class { 'devenv::php::repo': } ->
+    # class { 'devenv::php::repo': } ->
 
     class { '::php':
-        manage_repos => false,
+        manage_repos => true,
         fpm          => false,
         dev          => true,
         pear         => true,

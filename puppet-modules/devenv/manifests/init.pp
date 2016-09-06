@@ -1,6 +1,5 @@
 class devenv (
         $user,
-        $elk = false,
     ) {
 
     # Set Path
@@ -8,11 +7,6 @@ class devenv (
 
     # Basic Packages
     class { 'devenv::packages': } ->
-
-    # ELK Stack
-    class { 'elk':
-        install => $elk,
-    } ->
 
     # Vim
     class { 'devenv::vim':
