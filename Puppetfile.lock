@@ -3,52 +3,13 @@ FORGE
   specs:
     artberri-nvm (0.1.0)
       puppetlabs-stdlib (>= 1.0.0)
-    darin-zypprepo (1.0.2)
-    example42-puppi (2.1.12)
-    example42-yum (2.1.24)
-      example42-puppi (>= 2.0.0)
     golja-gnupg (1.2.1)
     maestrodev-rvm (1.12.1)
       golja-gnupg (>= 1.2.0)
       puppetlabs-stdlib (>= 4.2.0)
-    maestrodev-wget (1.7.1)
-    mayflower-php (3.4.2)
-      darin-zypprepo (~> 1.0)
-      example42-yum (~> 2.0)
-      puppetlabs-apt (< 3.0.0, >= 1.0.0)
-      puppetlabs-inifile (~> 1.0)
-      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
-    nanliu-staging (1.0.3)
-    puppetlabs-apache (1.6.0)
-      puppetlabs-concat (< 2.0.0, >= 1.1.1)
-      puppetlabs-stdlib (< 5.0.0, >= 2.4.0)
     puppetlabs-apt (2.2.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
-    puppetlabs-concat (1.2.4)
-      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
-    puppetlabs-inifile (1.4.2)
-    puppetlabs-mysql (3.6.1)
-      nanliu-staging (< 2.0.0, >= 1.0.1)
-      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs-stdlib (4.9.0)
-    tylerwalts-jdk_oracle (1.4.0)
-
-GIT
-  remote: git://github.com/artberri/puppet-android.git
-  ref: 7851859edc4f1d0b1d18d127ceb2568620859443
-  sha: 7851859edc4f1d0b1d18d127ceb2568620859443
-  specs:
-    maestrodev-android (1.3.2)
-      maestrodev-wget (>= 1.0.0)
-      puppetlabs-stdlib (>= 3.2.0)
-
-GIT
-  remote: git://github.com/cpick/puppet-module-dropbox.git
-  ref: new-apt-module
-  sha: 5b60da65aa13172ca9e8dbec5dbdc49ae56f1fad
-  specs:
-    rcoleman-dropbox (0.2.0)
-      puppetlabs-apt (>= 2.0.0)
 
 GIT
   remote: https://github.com/artberri/puppet-mariadbrepo.git
@@ -68,13 +29,7 @@ DEPENDENCIES
   artberri-mariadbrepo (>= 0)
   artberri-nvm (= 0.1.0)
   berri-devenv (= 0.0.1)
-  maestrodev-android (>= 0)
   maestrodev-rvm (= 1.12.1)
-  mayflower-php (= 3.4.2)
-  puppetlabs-apache (= 1.6.0)
   puppetlabs-apt (= 2.2.0)
-  puppetlabs-mysql (= 3.6.1)
   puppetlabs-stdlib (= 4.9.0)
-  rcoleman-dropbox (>= 0)
-  tylerwalts-jdk_oracle (= 1.4.0)
 
