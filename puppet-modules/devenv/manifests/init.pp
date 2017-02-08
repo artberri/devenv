@@ -6,69 +6,71 @@ class devenv (
     Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin/" ] }
 
     # Basic Packages
-    class { 'devenv::packages': } ->
+    class { '::devenv::packages': } ->
+
+    class { '::devenv::grive2': } ->
 
     # Vim
-    class { 'devenv::vim':
-        user    => $user,
-    } ->
+    #class { 'devenv::vim':
+    #    user    => $user,
+    #} ->
 
     # Node (NVM)
-    class { 'devenv::nodejs':
-        user    => $user,
-    } ->
+    #class { 'devenv::nodejs':
+    #    user    => $user,
+    #} ->
 
     # PHP 5.6
-    class { 'devenv::php::install': } ->
+    #class { 'devenv::php::install': } ->
 
     # Apache
-    class { 'devenv::apache': } ->
+    #class { 'devenv::apache': } ->
 
     # MariaDB
-    class { 'devenv::mariadb': } ->
+    #class { 'devenv::mariadb': } ->
 
     # Powerline
-    class { 'devenv::powerline':
-        user    => $user,
-    } ->
+    #class { 'devenv::powerline':
+    #    user    => $user,
+    #} ->
 
     # Shell theme
-    class { 'devenv::solarize':
-        user    => $user,
-    } ->
+    #class { 'devenv::solarize':
+    #    user    => $user,
+    #} ->
 
     # Config files
-    class { 'devenv::dotfiles':
-        user    => $user,
-    } ->
+    #class { 'devenv::dotfiles':
+    #    user    => $user,
+    #} ->
 
     # Sublime Text 3
-    class { 'devenv::sublime_text':
-        user    => $user,
-    } ->
+    #class { 'devenv::sublime_text':
+    #    user    => $user,
+    #} ->
 
     # VS Code
-    class { 'devenv::vscode':
-        user    => $user,
-    } ->
+    #class { 'devenv::vscode':
+    #    user    => $user,
+    #} ->
 
     # Chrome
-    class { 'devenv::chrome': } ->
+    #class { 'devenv::chrome': } ->
 
     # Android
-    class { 'devenv::android': } ->
+    #class { 'devenv::android': } ->
 
     # Dropbox
-    class { 'dropbox': } ->
+    #class { 'dropbox': } ->
 
     # Rainbowstream (twitter)
-    class { 'devenv::rainbowstream':
-        user    => $user,
-    } ->
+    #class { 'devenv::rainbowstream':
+    #    user    => $user,
+    #} ->
 
     # devenv command
     file { '/usr/local/bin/devenv':
-        target => "/opt/devenv/bootstrap.sh",
+        target => "/home/${user}/devenv/bootstrap.sh",
         ensure => 'link',
         owner  => 'root',
         group  => 'root',
