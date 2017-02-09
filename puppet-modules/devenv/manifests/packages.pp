@@ -38,6 +38,7 @@ class devenv::packages {
         'make',
         'nfs-kernel-server',
         'nfs-common',
+        'powerline',
         'python',
         'python-gpgme',
         'python-gtk2',
@@ -57,6 +58,8 @@ class devenv::packages {
         'xclip',
         'xtrlock',
         'zlib1g-dev',
+        'zsh',
+        'zsh-antigen',
     ]
 
     package { $packages: ensure => 'installed' }

@@ -31,9 +31,9 @@ class devenv (
     } ->
 
     # Config files
-    #class { 'devenv::dotfiles':
-    #    user    => $user,
-    #} ->
+    class { 'devenv::dotfiles':
+        user    => $user,
+    } ->
 
     # VS Code
     class { '::devenv::vscode':

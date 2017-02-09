@@ -3,22 +3,9 @@ FORGE
   specs:
     artberri-nvm (0.1.0)
       puppetlabs-stdlib (>= 1.0.0)
-    golja-gnupg (1.2.1)
-    maestrodev-rvm (1.12.1)
-      golja-gnupg (>= 1.2.0)
-      puppetlabs-stdlib (>= 4.2.0)
     puppetlabs-apt (2.2.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
-    puppetlabs-stdlib (4.9.0)
-
-GIT
-  remote: https://github.com/artberri/puppet-mariadbrepo.git
-  ref: upgrade-apt-dependency
-  sha: b2f7b5ab7cbdd868e7fba910f1d084d3e3257544
-  specs:
-    artberri-mariadbrepo (0.2.2)
-      puppetlabs-apt (< 3.0.0, >= 2.2.0)
-      puppetlabs-stdlib (< 5.0.0, >= 3.2.1)
+    puppetlabs-stdlib (4.15.0)
 
 PATH
   remote: ./puppet-modules/devenv
@@ -26,10 +13,8 @@ PATH
     berri-devenv (0.0.1)
 
 DEPENDENCIES
-  artberri-mariadbrepo (>= 0)
   artberri-nvm (= 0.1.0)
   berri-devenv (= 0.0.1)
-  maestrodev-rvm (= 1.12.1)
   puppetlabs-apt (= 2.2.0)
-  puppetlabs-stdlib (= 4.9.0)
+  puppetlabs-stdlib (= 4.15.0)
 

@@ -248,7 +248,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 export GIT_PS1_SHOWCOLORHINTS=1
 source ~/.git-completion.bash
-source ~/.git-prompt.sh
+# source ~/.git-prompt.sh
 PS1=$PS1'$(__git_ps1 "(%s)" )\$ '
 
 # added by travis gem

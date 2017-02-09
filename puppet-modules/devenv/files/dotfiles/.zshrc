@@ -17,7 +17,7 @@ compinit
 
 export EDITOR='vim'
 
-source "/opt/devenv/antigen/antigen.zsh"
+source "/usr/share/zsh-antigen/antigen.zsh"
 
 antigen use oh-my-zsh
 
@@ -66,7 +66,6 @@ alias l='ls -CF'
 alias du='du -kh'
 alias df='df -kTh'
 alias tw='rainbowstream'
-alias lock='/opt/devenv/puppet-modules/devenv/files/minimize.py;wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz;xtrlock &; cmatrix -s;'
 
 # TMUX
 if which tmux >/dev/null 2>&1; then
@@ -82,6 +81,7 @@ fi
 
 wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 
+powerline-daemon -q
 
 #-------------------------------------------------------------
 # File & strings related functions:
