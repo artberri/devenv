@@ -22,25 +22,25 @@ source "/usr/share/zsh-antigen/antigen.zsh"
 antigen use oh-my-zsh
 
 # bundles from oh-my-zsh
-antigen bundle bower
-antigen bundle bundler
-antigen bundle command-not-found
+# antigen bundle bower
+# antigen bundle bundler
+# antigen bundle command-not-found
 antigen bundle dirhistory
-antigen bundle gem
+# antigen bundle gem
 antigen bundle git
 antigen bundle history
 antigen bundle node
 antigen bundle npm
 antigen bundle rsync
-antigen bundle sublime
+# antigen bundle sublime
 antigen bundle sudo
 antigen bundle vagrant
 
 # Other
-antigen bundle zsh-users/zsh-completions src
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle kennethreitz/autoenv
-antigen bundle chrissicool/zsh-256color
+# antigen bundle zsh-users/zsh-completions src
+# antigen bundle zsh-users/zsh-syntax-highlighting
+# antigen bundle kennethreitz/autoenv
+# antigen bundle chrissicool/zsh-256color
 
 antigen-theme agnoster
 antigen-apply

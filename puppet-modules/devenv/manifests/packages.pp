@@ -38,6 +38,7 @@ class devenv::packages {
         'make',
         'nfs-kernel-server',
         'nfs-common',
+        'openvpn',
         'powerline',
         'python',
         'python-gpgme',
