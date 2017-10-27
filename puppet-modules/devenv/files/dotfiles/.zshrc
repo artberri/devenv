@@ -1,6 +1,6 @@
 export NVM_DIR=~/.nvm
 export ANDROID_HOME=/usr/local/android/android-sdk-linux
-export PATH=$PATH:/usr/local/android/android-sdk-linux/tools:/usr/local/android/android-sdk-linux/platform-tools
+export PATH=$PATH:/usr/local/android/android-sdk-linux/tools:/usr/local/android/android-sdk-linux/platform-tools:/home/alberto/go/bin
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -42,8 +42,8 @@ antigen bundle vagrant
 # antigen bundle kennethreitz/autoenv
 # antigen bundle chrissicool/zsh-256color
 
-antigen-theme agnoster
-antigen-apply
+antigen theme agnoster
+antigen apply
 
 eval `dircolors ~/.dircolors-solarized/dircolors.ansi-dark`
 
