@@ -1,0 +1,37 @@
+---
+- name: Dotfile ~/.bashrc
+  file:
+    src: ~/.devenv/dotfiles/.bashrc
+    dest: ~/.bashrc
+    state: link
+  tags: dotfiles
+- name: Dotfile ~/.zshrc.local
+  file:
+    src: ~/.devenv/dotfiles/.zshrc.local
+    dest: ~/.zshrc.local
+    state: link
+  tags: dotfiles
+- name: Dotfile ~/.git-completion.bash
+  file:
+    src: ~/.devenv/dotfiles/.git-completion.bash
+    dest: ~/.git-completion.bash
+    state: link
+  tags: dotfiles
+- name: Dotfile ~/.tmux.conf
+  file:
+    src: ~/.devenv/dotfiles/.tmux.conf
+    dest: ~/.tmux.conf
+    state: link
+  tags: dotfiles
+- name: Dotfile ~/.vimrc
+  file:
+    src: ~/.devenv/dotfiles/.vimrc
+    dest: ~/.vimrc
+    state: link
+  tags: dotfiles
+- name: Dotfile ~/.inputrc
+  file:
+    src: ~/.devenv/dotfiles/.inputrc
+    dest: ~/.inputrc
+    state: link
+  tags: dotfiles

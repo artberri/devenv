@@ -1,0 +1,4 @@
+---
+- name: Install nvm
+  git: repo=https://github.com/creationix/nvm.git dest=~/.nvm version={{ nvm.version }}
+  tags: nvm

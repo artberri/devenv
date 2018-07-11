@@ -1,0 +1,114 @@
+#!/bin/bash
+
+cat << "EOF"
+
+ /\ \
+ \_\ \     __   __  __     __    ___   __  __
+ /'_` \  /'__`\/\ \/\ \  /'__`\/' _ `\/\ \/\ \
+/\ \L\ \/\  __/\ \ \_/ |/\  __//\ \/\ \ \ \_/ |
+\ \___,_\ \____\\ \___/ \ \____\ \_\ \_\ \___/
+ \/__,_ /\/____/ \/__/   \/____/\/_/\/_/\/__/
+
+By @artberri
+
+EOF
+
+# COMMON DATA
+OS_CODENAME=`lsb_release --codename | cut -f2`
+OS_ID=`lsb_release --id | cut -f2`
+USER=$(whoami)
+DEVENV_PATH=${HOME}/.devenv
+
+# COLORS
+RESTORE='\033[0m'
+RED='\033[00;31m'
+GREEN='\033[00;32m'
+YELLOW='\033[00;33m'
+BLUE='\033[00;34m'
+PURPLE='\033[00;35m'
+CYAN='\033[00;36m'
+LIGHTGRAY='\033[00;37m'
+LRED='\033[01;31m'
+LGREEN='\033[01;32m'
+LYELLOW='\033[01;33m'
+LBLUE='\033[01;34m'
+LPURPLE='\033[01;35m'
+LCYAN='\033[01;36m'
+WHITE='\033[01;37m'
+TICK="${GREEN}\xE2\x9C\x94${RESTORE}"
+
+PLAYBOOK_FILE=$DEVENV_PATH/playbook.yml
+
+while getopts ":hd" opt; do
+    case ${opt} in
+        h )
+            echo "Usage: devenv [OPTION]"
+            echo "Options"
+            echo "    -h                   Display this help message."
+            echo "    -d                   Install desktop version."
+            echo ""
+            exit 0
+            ;;
+        d )
+            echo -e "${CYAN}Running in desktop mode${RESTORE}"
+            echo ""
+            PLAYBOOK_FILE=$DEVENV_PATH/playbook.desktop.yml
+            ;;
+        \? )
+            echo -e "${RED}Invalid Option: -${OPTARG}. Get help with: devenv -h ${RESTORE}" 1>&2
+            exit 1
+            ;;
+    esac
+done
+
+# Check root
+if [[ $EUID -eq 0 ]]; then
+    echo -e "${RED}This script must NOT be run as root${RESTORE}"
+    exit 1
+fi
+
+# Check Ubuntu
+if [ "$OS_ID" != "Ubuntu" ]; then
+    echo -e "${RED}This script is customized only for Ubuntu. You are using: ${OS_ID}${RESTORE}"
+    exit 1
+fi
+echo -e "Ubuntu (${OS_CODENAME}) detected ${TICK}"
+
+# Check Ansible
+if ! type "ansible" > /dev/null 2> /dev/null; then
+
+    echo -e "${YELLOW}Ansible not installed. Wait while installing...${RESTORE}"
+
+    sudo apt-get update >/dev/null
+    sudo apt-get install software-properties-common -y >/dev/null
+    sudo apt-add-repository ppa:ansible/ansible -y >/dev/null
+    sudo apt-get update >/dev/null
+    sudo apt-get install ansible -y >/dev/null
+
+    if ! type "ansible" > /dev/null 2> /dev/null; then
+        echo -e "${RED}Error installing Ansible, try manual installation${RESTORE}"
+        exit 1
+    fi
+fi
+echo -e "Ansible detected ${TICK}"
+cd $DEVENV_PATH
+echo -e "${YELLOW}Installing Ansible modules from Galaxy...${RESTORE}"
+if ! ansible-galaxy install -r requirements.yml; then
+    echo -e "${RED}Error installing Ansible modules${RESTORE}"
+    exit 1
+fi
+cd - >/dev/null
+echo -e "Ansible modules installed ${TICK}"
+
+# Running playbook
+cd $DEVENV_PATH
+echo -e "${YELLOW}Running Ansible Playbook...${RESTORE}"
+if ! ansible-playbook $PLAYBOOK_FILE --ask-become-pass; then
+    echo -e "${RED}Error running Ansible${RESTORE}"
+    exit 1
+fi
+cd - >/dev/null
+echo -e "Ansible run ok ${TICK}"
+echo ""
+
+exit 0

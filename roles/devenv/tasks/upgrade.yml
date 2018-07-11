@@ -1,0 +1,18 @@
+- name: Update apt package cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  become: true
+- name: Upgrade all packages to the latest version
+  apt:
+    name: "*"
+    state: latest
+  become: true
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+  become: true
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+  become: true

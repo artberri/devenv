@@ -1,17 +1,27 @@
 # artberri/devenv
 
-A [puppet](https://github.com/puppetlabs/puppet) project to set up my development machine ([@artberri](https://github.com/artberri)) in an automated way.
+A project to set up my development machine ([@artberri](https://github.com/artberri)) in an automated way.
 
 ## Requirements
 
-Requires [Ubuntu 15.04 (Vivid Vervet)](http://releases.ubuntu.com/15.04/).
+Requires [Ubuntu 18.04 (Bionic Beaver)](http://releases.ubuntu.com/18.04/).
+
+Git:
+
+``` bash
+sudo apt-add-repository ppa:git-core/ppa -y
+sudo apt-get update
+sudo apt-get install git -y
+```
 
 ## Installation
 
-```
-sudo chmod a+w /opt
-sudo apt-get install git
-git clone https://github.com/artberri/devenv.git /opt/devenv --recursive
+``` bash
+export DEVENV_PATH="$(echo ~)/.devenv"
+git clone https://github.com/artberri/devenv.git $DEVENV_PATH
+export PATH=$PATH:$DEVENV_PATH/bin
+
+
 cd /opt/devenv
 /opt/devenv/bootstrap.sh
 chsh -s /bin/zsh
@@ -23,7 +33,7 @@ reboot
 
 ## Updating
 
-```
+``` bash
 cd /opt/devenv
 git pull && git submodule foreach git pull origin master
 devenv

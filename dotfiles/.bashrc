@@ -1,7 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-export NVM_DIR=~/.nvm
+export NVM_DIR=/home/alberto/.nvm
 export ANDROID_HOME=/usr/local/android/android-sdk-linux
-export PATH=$PATH:/usr/local/android/android-sdk-linux/tools:/usr/local/android/android-sdk-linux/platform-tools:/opt/terraform:/home/alberto/go/bin
+export PATH=$PATH:/home/alberto/.devenv/bin:/usr/local/android/android-sdk-linux/tools:/usr/local/android/android-sdk-linux/platform-tools:/opt/terraform:/home/alberto/go/bin
 
 # If not running interactively, don't do anything
 case $- in
@@ -92,8 +92,8 @@ if which tmux >/dev/null 2>&1; then
     fi
 fi
 
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #-------------------------------------------------------------
 # File & strings related functions:
@@ -257,3 +257,10 @@ PS1=$PS1'$(__git_ps1 "(%s)" )\$ '
 export PATH=$PATH:/usr/local/bin
 
 source '/opt/azure-cli/az.completion'
+
+###-tns-completion-start-###
+if [ -f /home/alberto/.tnsrc ]; then
+    source /home/alberto/.tnsrc
+fi
+###-tns-completion-end-###
+export GPG_TTY=$(tty)

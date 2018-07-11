@@ -1,0 +1,20 @@
+---
+- name: devenv
+  hosts: localhost
+  connection: local
+  tasks:
+    - import_role:
+        name: devenv
+    - import_role:
+        name: viasite-ansible.zsh
+      vars:
+        zsh_antigen_bundles_extras:
+          - dirhistory
+          - git
+          - history
+          - node
+          - npm
+          - rsync
+          - sudo
+          - vagrant
+          - zsh-users/zsh-completions

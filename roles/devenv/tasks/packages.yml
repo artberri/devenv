@@ -1,0 +1,36 @@
+- name: Install basic Ubuntu packages
+  apt:
+    name: "{{ packages }}"
+  become: true
+  vars:
+    packages:
+    - build-essential
+    - cmake
+    - curl
+    - filezilla
+    - font-manager
+    - gimp
+    - htop
+    - indicator-multiload
+    - inkscape
+    - keepass2
+    - libssl-dev
+    - nfs-kernel-server
+    - nfs-common
+    - openvpn
+    - powerline
+    - shutter
+    - telnet
+    - tmux
+    - traceroute
+    - ttf-mscorefonts-installer
+    - unrar
+    - vagrant
+    - virtualbox
+    - wget
+    - whois
+    - wmctrl
+    - xclip
+    - xtrlock
+    - zsh
+    - zsh-antigen

@@ -1,0 +1,26 @@
+---
+- name: Install vim
+  apt:
+    name: vim
+  tags: vim
+- name: Create ~/.vim/autoload directory
+  file: path=~/.vim/autoload state=directory
+  tags: vim
+- name: Create ~/.vim/bundle directory
+  file: path=~/.vim/bundle state=directory
+  tags: vim
+- name: Download pathogen
+  get_url: url=https://tpo.pe/pathogen.vim dest=~/.vim/autoload/
+  tags: vim
+- name: Download vim-sensible
+  git: repo=https://github.com/tpope/vim-sensible.git dest=~/.vim/bundle/vim-sensible update=no
+  tags: vim
+- name: Download vim-sleuth
+  git: repo=https://github.com/tpope/vim-sleuth.git dest=~/.vim/bundle/vim-sleuth update=no
+  tags: vim
+- name: Download vim-gitgutter
+  git: repo=https://github.com/airblade/vim-gitgutter.git dest=~/.vim/bundle/vim-gitgutter update=no
+  tags: vim
+- name: Download powerline
+  git: repo=https://github.com/powerline/powerline.git dest=~/.vim/bundle/powerline update=no
+  tags: vim

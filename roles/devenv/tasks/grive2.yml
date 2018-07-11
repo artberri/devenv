@@ -1,0 +1,30 @@
+---
+- name: Clone grive2
+  git: repo=https://github.com/vitalif/grive2.git dest=/opt/grive2 version={{ grive2.version }} update=no
+  become: true
+  tags: grive2
+- name: Create /opt/grive2/build directory
+  file: path=/opt/grive2/build
+  become: true
+  tags: grive2
+- name: Build grive2 (step 1)
+  shell: /usr/bin/cmake ..
+  args:
+    creates: /opt/grive2/build/Makefile
+    chdir: /opt/grive2/build
+  become: true
+  tags: grive2
+- name: Build grive2 (step 2)
+  shell: /usr/bin/make -j4
+  args:
+    creates: /opt/grive2/build/grive/CMakeFiles/grive_executable.dir/src/main.cc.o
+    chdir: /opt/grive2/build
+  become: true
+  tags: grive2
+- name: Install grive2
+  shell: /usr/bin/make install
+  args:
+    creates: /usr/local/bin/grive
+    chdir: /opt/grive2/build
+  become: true
+  tags: grive2
