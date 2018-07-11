@@ -13,3 +13,18 @@
 - import_tasks: powerline.yml
 - import_tasks: solarize.yml
 - import_tasks: dotfiles.yml
+- import_role:
+    name: viasite-ansible.zsh
+  vars:
+    zsh_hotkeys: []
+    zsh_mc_solarized_skin: yes
+    zsh_antigen_bundles_extras:
+      - dirhistory
+      - git
+      - history
+      - node
+      - npm
+      - rsync
+      - sudo
+      - vagrant
+      - zsh-users/zsh-completions

@@ -6,6 +6,4 @@
     - import_role:
         name: devenv
     - import_role:
-        name: viasite-ansible.zsh
-    - import_role:
         name: desktop

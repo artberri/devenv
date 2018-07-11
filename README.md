@@ -20,22 +20,19 @@ sudo apt-get install git -y
 export DEVENV_PATH="$(echo ~)/.devenv"
 git clone https://github.com/artberri/devenv.git $DEVENV_PATH
 export PATH=$PATH:$DEVENV_PATH/bin
-
-
-cd /opt/devenv
-/opt/devenv/bootstrap.sh
+devenv
 chsh -s /bin/zsh
 reboot
 # After the reboot:
-~/.solarize/set_dark.sh
+~/.solarized/install.sh -s dark --skip-dircolors
 # You should start sublime text, wait until the packages are installed and restart it.
 ```
 
 ## Updating
 
 ``` bash
-cd /opt/devenv
-git pull && git submodule foreach git pull origin master
+cd ~/.devenv
+git pull
 devenv
 ```
 
