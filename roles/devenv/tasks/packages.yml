@@ -4,29 +4,24 @@
   become: true
   vars:
     packages:
+    - aptitude
     - build-essential
     - cmake
     - curl
-    - filezilla
     - font-manager
-    - gimp
     - htop
-    - indicator-multiload
-    - inkscape
-    - keepass2
     - libssl-dev
     - nfs-kernel-server
     - nfs-common
     - openvpn
     - powerline
-    - shutter
+    - python-argcomplete
     - telnet
     - tmux
     - traceroute
     - ttf-mscorefonts-installer
     - unrar
     - vagrant
-    - virtualbox
     - wget
     - whois
     - wmctrl

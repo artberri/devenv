@@ -256,7 +256,7 @@ PS1=$PS1'$(__git_ps1 "(%s)" )\$ '
 
 export PATH=$PATH:/usr/local/bin
 
-source '/opt/azure-cli/az.completion'
+source '/opt/az/bin/az.completion.sh'
 
 ###-tns-completion-start-###
 if [ -f /home/alberto/.tnsrc ]; then

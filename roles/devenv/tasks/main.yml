@@ -1,10 +1,6 @@
 ---
 - import_tasks: upgrade.yml
 - import_tasks: packages.yml
-- import_tasks: grive2.yml
-  vars:
-    grive2:
-      version: master
 - import_tasks: vim.yml
 - import_tasks: nvm.yml
   vars:
@@ -13,9 +9,12 @@
 - import_tasks: powerline.yml
 - import_tasks: solarize.yml
 - import_tasks: dotfiles.yml
+- import_tasks: azcli.yml
 - import_role:
     name: viasite-ansible.zsh
+  become: true
   vars:
+    zsh_user: alberto
     zsh_hotkeys: []
     zsh_mc_solarized_skin: yes
     zsh_antigen_bundles_extras:
