@@ -5,6 +5,7 @@
   vars:
     packages:
     - aptitude
+    - apt-transport-https
     - build-essential
     - cmake
     - curl
@@ -16,6 +17,7 @@
     - openvpn
     - powerline
     - python-argcomplete
+    - software-properties-common
     - telnet
     - tmux
     - traceroute

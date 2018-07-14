@@ -10,6 +10,8 @@
 - import_tasks: solarize.yml
 - import_tasks: dotfiles.yml
 - import_tasks: azcli.yml
+- import_tasks: certbot.yml
+- import_tasks: kubectl.yml
 - import_role:
     name: viasite-ansible.zsh
   become: true
