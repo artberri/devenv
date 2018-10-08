@@ -1,0 +1,40 @@
+---
+- name: Install neovim
+  apt:
+    name: neovim
+  become: yes
+  tags: neovim
+- name: Create ~/.config/nvim directory
+  file: path=~/.config/nvim state=directory
+  tags: neovim
+- name: Create ~/.config/nvim/autoload directory
+  file: path=~/.config/nvim/autoload state=directory
+  tags: neovim
+- name: Create ~/.config/nvim/bundle directory
+  file: path=~/.config/nvim/bundle state=directory
+  tags: neovim
+- name: Download pathogen
+  get_url: url=https://tpo.pe/pathogen.vim dest=~/.config/nvim/autoload/
+  tags: neovim
+- name: Download vim-sensible
+  git: repo=https://github.com/tpope/vim-sensible.git dest=~/.config/nvim/bundle/vim-sensible update=yes
+  tags: neovim
+- name: Download vim-sleuth
+  git: repo=https://github.com/tpope/vim-sleuth.git dest=~/.config/nvim/bundle/vim-sleuth update=yes
+  tags: neovim
+- name: Download vim-gitgutter
+  git: repo=https://github.com/airblade/vim-gitgutter.git dest=~/.config/nvim/bundle/vim-gitgutter update=yes
+  tags: neovim
+- name: Download nerdtree
+  git: repo=https://github.com/scrooloose/nerdtree.git dest=~/.config/nvim/bundle/nerdtree update=yes
+  tags: neovim
+- name: Download nerdtree-git
+  git: repo=https://github.com/Xuyuanp/nerdtree-git-plugin.git dest=~/.config/nvim/bundle/nerdtree-git-plugin update=yes
+  tags: neovim
+- name: Dotfile ~/.config/nvim/init.vim
+  file:
+    src: ~/.devenv/dotfiles/init.vim
+    dest: ~/.config/nvim/init.vim
+    state: link
+  tags: dotfiles
+

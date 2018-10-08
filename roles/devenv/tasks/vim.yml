@@ -1,5 +1,6 @@
 ---
 - name: Install vim
+  become: true
   apt:
     name: vim
   tags: vim
