@@ -1,0 +1,11 @@
+- name: Install desktop Ubuntu packages
+  apt:
+    name: "{{ packages }}"
+  become: true
+  vars:
+    packages:
+    - firefox
+    - font-manager
+    - gimp
+    - inkscape
+    - keepass2

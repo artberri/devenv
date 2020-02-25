@@ -1,0 +1,25 @@
+- name: install docker key (apt)
+  become: yes
+  apt_key:
+    url: 'https://download.docker.com/linux/ubuntu/gpg'
+    state: present
+
+- name: docker repo (apt)
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+    update_cache: yes
+
+- name: install docker (apt)
+  become: yes
+  apt:
+    name: "docker-ce"
+    state: present
+
+- name: adding existing user '{{ ansible_user_id }}' to group docker
+  become: yes
+  user:
+    name: '{{ ansible_user_id }}'
+    groups: docker
+    append: yes

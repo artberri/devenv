@@ -9,8 +9,9 @@
   apt_repository:
     repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
     state: present
+    update_cache: yes
 
-- name: install VS Code (apt)
+- name: install kubectl (apt)
   become: yes
   apt:
     name: "kubectl"

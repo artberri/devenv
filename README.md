@@ -8,7 +8,7 @@ Requires [Ubuntu 18.04 (Bionic Beaver)](http://releases.ubuntu.com/18.04/).
 
 Git:
 
-``` bash
+```bash
 sudo apt-add-repository ppa:git-core/ppa -y
 sudo apt-get update
 sudo apt-get install git -y
@@ -16,8 +16,8 @@ sudo apt-get install git -y
 
 ## Installation
 
-``` bash
-export DEVENV_PATH="$(echo ~)/.devenv"
+```bash
+export DEVENV_PATH="${HOME}/.devenv"
 git clone https://github.com/artberri/devenv.git $DEVENV_PATH
 export PATH=$PATH:$DEVENV_PATH/bin
 devenv

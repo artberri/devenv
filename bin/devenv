@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat << "EOF"
 
@@ -91,14 +91,19 @@ if ! type "ansible" > /dev/null 2> /dev/null; then
     fi
 fi
 echo -e "Ansible detected ${TICK}"
-cd $DEVENV_PATH
-echo -e "${YELLOW}Installing Ansible modules from Galaxy...${RESTORE}"
-if ! ansible-galaxy install -r requirements.yml; then
-    echo -e "${RED}Error installing Ansible modules${RESTORE}"
-    exit 1
+
+# Install ansible reuqirements if necessary
+ANSIBLE_REQUIREMENTS_FILE=$DEVENV_PATH/requirements.yml
+if test -f "$ANSIBLE_REQUIREMENTS_FILE"; then
+    cd $DEVENV_PATH
+    echo -e "${YELLOW}Installing Ansible modules from Galaxy...${RESTORE}"
+    if ! ansible-galaxy install -r requirements.yml; then
+        echo -e "${RED}Error installing Ansible modules${RESTORE}"
+        exit 1
+    fi
+    cd - >/dev/null
+    echo -e "Ansible modules installed ${TICK}"
 fi
-cd - >/dev/null
-echo -e "Ansible modules installed ${TICK}"
 
 # Running playbook
 cd $DEVENV_PATH

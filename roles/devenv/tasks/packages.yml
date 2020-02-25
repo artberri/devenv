@@ -6,28 +6,36 @@
     packages:
     - aptitude
     - apt-transport-https
+    - binutils-dev
     - build-essential
+    - ca-certificates
     - cmake
     - curl
-    - font-manager
+    - debhelper
+    - dpkg-dev
     - htop
+    - gnupg
+    - libgcrypt20-dev
     - libssl-dev
+    - libyajl-dev
+    - libboost-all-dev
+    - libcurl4-openssl-dev
+    - libexpat1-dev
+    - libcppunit-dev
+    - lsb-release
     - nfs-kernel-server
     - nfs-common
     - openvpn
-    - powerline
-    - python-argcomplete
+    - pkg-config
     - software-properties-common
     - telnet
     - tmux
     - traceroute
     - ttf-mscorefonts-installer
     - unrar
-    - vagrant
     - wget
     - whois
     - wmctrl
     - xclip
     - xtrlock
-    - zsh
-    - zsh-antigen
+    - zlib1g-dev

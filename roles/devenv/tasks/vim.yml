@@ -14,14 +14,14 @@
   get_url: url=https://tpo.pe/pathogen.vim dest=~/.vim/autoload/
   tags: vim
 - name: Download vim-sensible
-  git: repo=https://github.com/tpope/vim-sensible.git dest=~/.vim/bundle/vim-sensible update=no
+  git: repo=https://github.com/tpope/vim-sensible.git dest=~/.vim/bundle/vim-sensible update=yes
   tags: vim
 - name: Download vim-sleuth
-  git: repo=https://github.com/tpope/vim-sleuth.git dest=~/.vim/bundle/vim-sleuth update=no
+  git: repo=https://github.com/tpope/vim-sleuth.git dest=~/.vim/bundle/vim-sleuth update=yes
   tags: vim
 - name: Download vim-gitgutter
-  git: repo=https://github.com/airblade/vim-gitgutter.git dest=~/.vim/bundle/vim-gitgutter update=no
+  git: repo=https://github.com/airblade/vim-gitgutter.git dest=~/.vim/bundle/vim-gitgutter update=yes
   tags: vim
 - name: Download powerline
-  git: repo=https://github.com/powerline/powerline.git dest=~/.vim/bundle/powerline update=no
+  git: repo=https://github.com/powerline/powerline.git dest=~/.vim/bundle/powerline update=yes
   tags: vim

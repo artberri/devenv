@@ -1,4 +1,4 @@
-- name: install micorsoft key (apt)
+- name: install microsoft key (apt)
   become: yes
   apt_key:
     url: 'https://packages.microsoft.com/keys/microsoft.asc'
@@ -9,6 +9,7 @@
   apt_repository:
     repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ bionic main
     state: present
+    update_cache: yes
 
 - name: install azure-cli (apt)
   become: yes

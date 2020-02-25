@@ -1,32 +1,17 @@
 ---
 - import_tasks: upgrade.yml
 - import_tasks: packages.yml
+- import_tasks: fish.yml
 - import_tasks: vim.yml
 - import_tasks: neovim.yml
 - import_tasks: nvm.yml
   vars:
     nvm:
-      version: v0.33.11
+      version: v0.35.2
 - import_tasks: powerline.yml
 - import_tasks: solarize.yml
 - import_tasks: dotfiles.yml
 - import_tasks: azcli.yml
 - import_tasks: certbot.yml
 - import_tasks: kubectl.yml
-- import_role:
-    name: viasite-ansible.zsh
-  become: true
-  vars:
-    zsh_user: alberto
-    zsh_hotkeys: []
-    zsh_mc_solarized_skin: yes
-    zsh_antigen_bundles_extras:
-      - dirhistory
-      - git
-      - history
-      - node
-      - npm
-      - rsync
-      - sudo
-      - vagrant
-      - zsh-users/zsh-completions
+- import_tasks: docker.yml
