@@ -10,8 +10,9 @@
       version: v0.35.2
 - import_tasks: powerline.yml
 - import_tasks: solarize.yml
-- import_tasks: dotfiles.yml
 - import_tasks: azcli.yml
 - import_tasks: certbot.yml
 - import_tasks: kubectl.yml
 - import_tasks: docker.yml
+- import_tasks: starship.yml
+- import_tasks: dotfiles.yml

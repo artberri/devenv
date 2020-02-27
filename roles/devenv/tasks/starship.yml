@@ -1,0 +1,13 @@
+- name: Download starship
+  become: true
+  get_url:
+    url: https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz
+    dest: /opt/starship-x86_64-unknown-linux-gnu.tar.gz
+    force: yes
+  register: starship_download
+- name: Untar starship
+  become: true
+  unarchive:
+    src: /opt/starship-x86_64-unknown-linux-gnu.tar.gz
+    dest: /usr/local/bin
+  when: starship_download.changed

@@ -8,7 +8,7 @@
     name: "*"
     state: latest
   become: true
-- name: Update all packages to the latest version
+- name: Update all dist packages to the latest version
   apt:
     upgrade: dist
   become: true

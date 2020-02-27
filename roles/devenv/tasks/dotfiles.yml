@@ -17,3 +17,17 @@
     dest: ~/.inputrc
     state: link
   tags: dotfiles
+- name: Dotfile ~/.extend.bashrc
+  file:
+    src: ~/.devenv/dotfiles/.extend.bashrc
+    dest: ~/.extend.bashrc
+    state: link
+  tags: dotfiles
+- name: Extend bashrc
+  lineinfile:
+    path: ~/.bashrc
+    regexp: '# extend bashrc'
+    insertafter: 'EOF'
+    line: '[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc # extend bashrc'
+    state: present
+  tags: dotfiles
