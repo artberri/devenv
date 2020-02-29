@@ -11,3 +11,8 @@
     src: /opt/starship-x86_64-unknown-linux-gnu.tar.gz
     dest: /usr/local/bin
   when: starship_download.changed
+- name: Starship config
+  file:
+    src: ~/.devenv/dotfiles/starship.toml
+    dest: ~/.config/starship.toml
+    state: link

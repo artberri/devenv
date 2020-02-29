@@ -1,4 +1,23 @@
 ---
+- name: Ensure ~/.config/systemd directory
+  file: path=~/.config/systemd state=directory
+  tags: dotfiles
+- name: Ensure ~/.config/systemd/user directory
+  file: path=~/.config/systemd/user state=directory
+  tags: dotfiles
+- name: Start tmux on init
+  file:
+    src: ~/.devenv/dotfiles/tmux.service
+    dest: ~/.config/systemd/user/tmux.service
+    state: link
+  tags: dotfiles
+- name: Enable service tmux and ensure is started
+  systemd:
+    name: tmux
+    state: started
+    enabled: yes
+    scope: user
+  tags: dotfiles
 - name: Dotfile ~/.tmux.conf
   file:
     src: ~/.devenv/dotfiles/.tmux.conf

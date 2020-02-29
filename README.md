@@ -2,6 +2,8 @@
 
 A project to set up my development machine ([@artberri](https://github.com/artberri)) in an automated way.
 
+![Screenshot of the shell](screenshot.png)
+
 ## Requirements
 
 Requires [Ubuntu 18.04 (Bionic Beaver)](http://releases.ubuntu.com/18.04/).
@@ -21,12 +23,9 @@ export DEVENV_PATH="${HOME}/.devenv"
 git clone https://github.com/artberri/devenv.git $DEVENV_PATH
 export PATH=$PATH:$DEVENV_PATH/bin
 devenv
-chsh -s /bin/zsh
-reboot
-# After the reboot:
-~/.solarized/install.sh -s dark --skip-dircolors
-# You should start sublime text, wait until the packages are installed and restart it.
 ```
+
+Finally, install some cool theme for the chosen terminal: [Dracula](https://draculatheme.com)
 
 ## Updating
 

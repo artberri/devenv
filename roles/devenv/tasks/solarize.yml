@@ -1,7 +1,0 @@
----
-- name: Download gnome-terminal-colors-solarized
-  git: repo=https://github.com/Anthony25/gnome-terminal-colors-solarized.git dest=~/.solarized update=yes
-  tags: solarize
-- name: Download dircolors-solarized
-  git: repo=https://github.com/huyz/dircolors-solarized.git dest=~/.dircolors-solarized update=yes
-  tags: solarize

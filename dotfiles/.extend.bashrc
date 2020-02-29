@@ -23,6 +23,8 @@ alias l='ls -CF'
 alias du='du -kh'
 alias df='df -kTh'
 
+# Maximize window
+wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 
 #-------------------------------------------------------------
 # File & strings related functions:
