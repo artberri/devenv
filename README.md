@@ -25,7 +25,7 @@ export PATH=$PATH:$DEVENV_PATH/bin
 devenv
 ```
 
-Finally, install some cool theme for the chosen terminal: [Dracula](https://draculatheme.com)
+Finally, install some cool theme for the gnome terminal if you want to [Dracula](https://draculatheme.com). It's already installed for Tilix.
 
 ## Updating
 

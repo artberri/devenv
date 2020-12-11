@@ -1,0 +1,6 @@
+- name: Load mediakeys configuration
+  shell: dconf load /org/gnome/settings-daemon/plugins/media-keys/ < ~/.devenv/dotfiles/mediakeys.dconf
+  when: mediakeys_dconf.changed
+- name: Load inputsources configuration
+  shell: dconf load /org/gnome/desktop/input-sources/ < ~/.devenv/dotfiles/inputsources.dconf
+  when: inputsources_dconf.changed

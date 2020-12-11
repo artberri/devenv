@@ -1,4 +1,25 @@
 ---
+- name: Ensure ~/.config/devenv directory
+  file: path=~/.config/devenv state=directory
+  tags: dotfiles
+- name: Copy tilix.dconf
+  copy:
+    src: ~/.devenv/dotfiles/tilix.dconf
+    dest: ~/.config/devenv/tilix.dconf
+  tags: dotfiles
+  register: tilix_dconf
+- name: Copy mediakeys.dconf
+  copy:
+    src: ~/.devenv/dotfiles/mediakeys.dconf
+    dest: ~/.config/devenv/mediakeys.dconf
+  tags: dotfiles
+  register: mediakeys_dconf
+- name: Copy inputsources.dconf
+  copy:
+    src: ~/.devenv/dotfiles/inputsources.dconf
+    dest: ~/.config/devenv/inputsources.dconf
+  tags: dotfiles
+  register: inputsources_dconf
 - name: Ensure ~/.config/systemd directory
   file: path=~/.config/systemd state=directory
   tags: dotfiles

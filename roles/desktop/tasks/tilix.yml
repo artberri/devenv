@@ -1,0 +1,15 @@
+- name: install tilix (apt)
+  become: yes
+  apt:
+    name: "tilix"
+    state: present
+  tags: tilix
+- name: Ensure ~/.config/tilix/schemes directory
+  file: path=~/.config/tilix/schemes state=directory
+  tags: tilix
+- name: Download Dracula color scheme for Tilix
+  get_url: url=https://raw.githubusercontent.com/dracula/tilix/master/Dracula.json dest=~/.config/tilix/schemes/
+  tags: tilix
+- name: Load tilix configuration
+  shell: dconf load /com/gexperts/Tilix/ < ~/.devenv/dotfiles/tilix.dconf
+  when: tilix_dconf.changed

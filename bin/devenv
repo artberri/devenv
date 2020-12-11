@@ -96,8 +96,12 @@ ANSIBLE_REQUIREMENTS_FILE=$DEVENV_PATH/requirements.yml
 if test -f "$ANSIBLE_REQUIREMENTS_FILE"; then
     cd $DEVENV_PATH
     echo -e "${YELLOW}Installing Ansible modules from Galaxy...${RESTORE}"
-    if ! ansible-galaxy install -r requirements.yml; then
-        echo -e "${RED}Error installing Ansible modules${RESTORE}"
+    if ! ansible-galaxy role install -r requirements.yml; then
+        echo -e "${RED}Error installing Ansible roles${RESTORE}"
+        exit 1
+    fi
+    if ! ansible-galaxy collection install -r requirements.yml; then
+        echo -e "${RED}Error installing Ansible collections${RESTORE}"
         exit 1
     fi
     cd - >/dev/null
