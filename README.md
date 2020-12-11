@@ -6,7 +6,7 @@ A project to set up my development machine ([@artberri](https://github.com/artbe
 
 ## Requirements
 
-Requires [Ubuntu 18.04 (Bionic Beaver)](http://releases.ubuntu.com/18.04/).
+Requires Ubuntu. Tested only in [Ubuntu 20.10 (Groovy Gorilla)](http://releases.ubuntu.com/20.10/).
 
 Git:
 
@@ -33,6 +33,14 @@ Finally, install some cool theme for the chosen terminal: [Dracula](https://drac
 cd ~/.devenv
 git pull
 devenv
+```
+
+## Others
+
+Mount Google Drive folder:
+
+```bash
+google-drive-ocamlfuse ~/google-drive
 ```
 
 ## License

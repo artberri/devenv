@@ -163,8 +163,6 @@ function ii()   # Get current host related info.
     echo
 }
 
-source '/opt/az/bin/az.completion.sh'
-
 eval "$(starship init bash)"
 
 # Initialize TMUX by default
