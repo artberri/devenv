@@ -37,22 +37,22 @@ LCYAN='\033[01;36m'
 WHITE='\033[01;37m'
 TICK="${GREEN}\xE2\x9C\x94${RESTORE}"
 
-PLAYBOOK_FILE=$DEVENV_PATH/playbook.yml
+PLAYBOOK_FILE=$DEVENV_PATH/playbook.desktop.yml
 
-while getopts ":hd" opt; do
+while getopts ":hs" opt; do
     case ${opt} in
         h )
             echo "Usage: devenv [OPTION]"
             echo "Options"
             echo "    -h                   Display this help message."
-            echo "    -d                   Install desktop version."
+            echo "    -s                   Install server version."
             echo ""
             exit 0
             ;;
-        d )
-            echo -e "${CYAN}Running in desktop mode${RESTORE}"
+        s )
+            echo -e "${CYAN}Running in server mode${RESTORE}"
             echo ""
-            PLAYBOOK_FILE=$DEVENV_PATH/playbook.desktop.yml
+            PLAYBOOK_FILE=$DEVENV_PATH/playbook.yml
             ;;
         \? )
             echo -e "${RED}Invalid Option: -${OPTARG}. Get help with: devenv -h ${RESTORE}" 1>&2

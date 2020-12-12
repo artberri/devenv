@@ -1,12 +1,12 @@
 [/]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
 
 [custom-keybindings/custom0]
 binding='<Super>d'
 command='/usr/bin/com.github.spheras.desktopfolder show-desktop'
-name='/usr/bin/com.github.spheras.desktopfolder show-desktop'
+name='Show Desktop'
 
-[custom-keybindings/custom1]
-binding='<Super>semicolon'
+[custom-keybindings/custom2]
+binding='<Alt>q'
 command='tilix --quake'
 name='Tilix quake mode'
