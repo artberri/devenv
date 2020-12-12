@@ -1,0 +1,61 @@
+---
+- name: Ensure git color auto
+  community.general.git_config:
+    scope: global
+    name: color.ui
+    value: auto
+  tags: git
+- name: Add vim as git editor
+  community.general.git_config:
+    name: core.editor
+    scope: global
+    value: vim
+  tags: git
+- name: Add ci alias to ~/.gitconfig
+  community.general.git_config:
+    name: alias.ci
+    scope: global
+    value: commit
+  tags: git
+- name: Add co alias to ~/.gitconfig
+  community.general.git_config:
+    name: alias.co
+    scope: global
+    value: checkout
+  tags: git
+- name: Add br alias to ~/.gitconfig
+  community.general.git_config:
+    name: alias.br
+    scope: global
+    value: branch
+  tags: git
+- name: Add st alias to ~/.gitconfig
+  community.general.git_config:
+    name: alias.st
+    scope: global
+    value: status
+  tags: git
+- name: Add amend alias to ~/.gitconfig
+  community.general.git_config:
+    name: alias.amend
+    scope: global
+    value: commit -a --amend --no-edit
+  tags: git
+- name: Add lg alias to ~/.gitconfig
+  community.general.git_config:
+    name: alias.lg
+    scope: global
+    value: log --graph --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ad)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+  tags: git
+- name: Set main as default branch
+  community.general.git_config:
+    scope: global
+    name: init.defaultBranch
+    value: main
+  tags: git
+- name: Set default pull to fast-forward
+  community.general.git_config:
+    scope: global
+    name: pull.ff
+    value: only
+  tags: git

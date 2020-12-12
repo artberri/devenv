@@ -83,6 +83,7 @@ if ! type "ansible" > /dev/null 2> /dev/null; then
     sudo apt-get install software-properties-common -y >/dev/null
     sudo apt-get update >/dev/null
     sudo apt-get install ansible -y >/dev/null
+    sudo apt-get install python3-psutil -y >/dev/null
 
     if ! type "ansible" > /dev/null 2> /dev/null; then
         echo -e "${RED}Error installing Ansible, try manual installation${RESTORE}"

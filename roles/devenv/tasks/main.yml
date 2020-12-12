@@ -2,6 +2,7 @@
 - import_tasks: upgrade.yml
 - import_tasks: packages.yml
 - import_tasks: vim.yml
+- import_tasks: git.yml
 - import_tasks: neovim.yml
 - import_tasks: nvm.yml
   vars:
