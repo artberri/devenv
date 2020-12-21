@@ -1,5 +1,0 @@
-- name: install certbot (apt)
-  become: yes
-  apt:
-    name: "certbot"
-    state: present

@@ -9,6 +9,7 @@
     - binutils-dev
     - build-essential
     - ca-certificates
+    - certbot
     - cmake
     - curl
     - debhelper

@@ -1,0 +1,22 @@
+- name: install azlux key (apt)
+  become: yes
+  apt_key:
+    url: 'https://azlux.fr/repo.gpg.key'
+    state: present
+
+- name: Personnal Azlux's repository
+  become: yes
+  apt_repository:
+    repo: deb https://packages.azlux.fr/debian/ buster main
+    state: present
+    update_cache: yes
+
+- name: Install Azlux's repository packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+  become: true
+  vars:
+    packages:
+    - broot
+    - duf
