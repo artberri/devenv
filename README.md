@@ -6,7 +6,7 @@ A project to set up my development machine ([@artberri](https://github.com/artbe
 
 ## Requirements
 
-Requires Ubuntu. Tested only in [Ubuntu 20.10 (Groovy Gorilla)](http://releases.ubuntu.com/20.10/).
+Requires Ubuntu. Tested only in [Ubuntu 21.04 (Hirsute Hippo)](http://releases.ubuntu.com/21.04/).
 
 Git:
 
@@ -29,7 +29,7 @@ Finally, install some cool theme for the gnome terminal if you want to [Dracula]
 
 ## Updating
 
-``` bash
+```bash
 cd ~/.devenv
 git pull
 devenv

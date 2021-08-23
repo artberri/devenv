@@ -4,39 +4,63 @@
   become: true
   vars:
     packages:
-    - aptitude
-    - apt-transport-https
-    - binutils-dev
-    - build-essential
-    - ca-certificates
-    - certbot
-    - cmake
-    - curl
-    - debhelper
-    - dpkg-dev
-    - htop
-    - gnupg
-    - libgcrypt20-dev
-    - libssl-dev
-    - libyajl-dev
-    - libboost-all-dev
-    - libcurl4-openssl-dev
-    - libexpat1-dev
-    - libcppunit-dev
-    - lsb-release
-    - nfs-kernel-server
-    - nfs-common
-    - openvpn
-    - pkg-config
-    - software-properties-common
-    - telnet
-    - tmux
-    - traceroute
-    - ttf-mscorefonts-installer
-    - unrar
-    - wget
-    - whois
-    - wmctrl
-    - xclip
-    - xtrlock
-    - zlib1g-dev
+      - aptitude
+      - apt-transport-https
+      - bat
+      - binutils-dev
+      - build-essential
+      - ca-certificates
+      - certbot
+      - cmake
+      - curl
+      - debhelper
+      - dog
+      - dpkg-dev
+      - exa
+      - fd-find
+      - figlet
+      - gnupg
+      - htop
+      - libgcrypt20-dev
+      - libssl-dev
+      - libyajl-dev
+      - libboost-all-dev
+      - libcurl4-openssl-dev
+      - libexpat1-dev
+      - libcppunit-dev
+      - lolcat
+      - lsb-release
+      - nfs-kernel-server
+      - nfs-common
+      - openvpn
+      - pkg-config
+      - silversearcher-ag
+      - software-properties-common
+      - ripgrep
+      - telnet
+      - tmux
+      - toilet
+      - traceroute
+      - ttf-mscorefonts-installer
+      - unrar
+      - wget
+      - whois
+      - wmctrl
+      - xclip
+      - xtrlock
+      - zlib1g-dev
+- name: Create local bin directory if it does not exist
+  ansible.builtin.file:
+    path: ~/.local/bin
+    state: directory
+    mode: "0755"
+- name: Create a symbolic link for bat
+  ansible.builtin.file:
+    src: /usr/bin/batcat
+    dest: ~/.local/bin/bat
+    state: link
+- name: Create a symbolic link for fd
+  ansible.builtin.file:
+    src: /usr/bin/fdfind
+    dest: ~/.local/bin/fd
+    state: link

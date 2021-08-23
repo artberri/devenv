@@ -1,0 +1,24 @@
+- name: Install delta
+  become: true
+  apt:
+    deb: https://github.com/dandavison/delta/releases/download/0.8.3/git-delta_0.8.3_amd64.deb
+- name: Set pager diff to delta in ~/.gitconfig
+  community.general.git_config:
+    name: pager.diff
+    scope: global
+    value: delta
+- name: Set pager log to delta in ~/.gitconfig
+  community.general.git_config:
+    name: pager.log
+    scope: global
+    value: delta
+- name: Set pager reflog to delta in ~/.gitconfig
+  community.general.git_config:
+    name: pager.reflog
+    scope: global
+    value: delta
+- name: Set pager show to delta in ~/.gitconfig
+  community.general.git_config:
+    name: pager.show
+    scope: global
+    value: delta

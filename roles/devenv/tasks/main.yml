@@ -14,3 +14,5 @@
 - import_tasks: starship.yml
 - import_tasks: dotfiles.yml
 - import_tasks: azlux.yml
+- import_tasks: delta.yml
+- import_tasks: dust.yml
