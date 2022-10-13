@@ -4,8 +4,8 @@
   become: true
   vars:
     packages:
-    - firefox
-    - font-manager
-    - gimp
-    - inkscape
-    - keepass2
+      - firefox
+      - font-manager
+      - gimp
+      - inkscape
+      - keepass2

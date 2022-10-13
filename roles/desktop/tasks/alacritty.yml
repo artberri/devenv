@@ -1,0 +1,74 @@
+---
+- name: Check for cargo deb
+  stat:
+    path: ~/.cargo/bin/cargo-deb
+  register: deb_stat
+  changed_when: not (deb_stat.stat.exists
+    and deb_stat.stat.executable)
+
+- name: Install cargo deb
+  when: deb_stat is changed
+  command: cargo install cargo-deb
+
+- name: Check for alacritty
+  become: true
+  stat:
+    path: /usr/local/bin/alacritty
+  register: alacritty_stat
+  changed_when: not (alacritty_stat.stat.exists
+    and alacritty_stat.stat.executable)
+
+- name: Install alacritty
+  when: alacritty_stat is changed
+  block:
+    - name: Install alacritty dependencies
+      apt:
+        name: "{{ packages }}"
+      become: true
+      vars:
+        packages:
+          - cmake
+          - pkg-config
+          - libfreetype6-dev
+          - libfontconfig1-dev
+          - libxcb-xfixes0-dev
+          - libxkbcommon-dev
+          - python3
+
+    - name: Create temporary directory
+      tempfile:
+        state: directory
+      register: alacritty_dir
+
+    - name: Clone alacritty
+      git:
+        force: true
+        repo: https://github.com/alacritty/alacritty.git
+        dest: "{{ alacritty_dir.path }}"
+
+    - name: Build alacritty
+      command: cargo build --release
+      args:
+        chdir: "{{ alacritty_dir.path }}"
+
+    - name: Delete temporary directory
+      file:
+        state: absent
+        path: "{{ alacritty_dir.path }}"
+
+- name: Create alacritty config directory
+  file:
+    state: directory
+    path: ~/.config/alacritty
+
+- name: Install alacritty theme
+  get_url:
+    url: https://raw.githubusercontent.com/dracula/alacritty/master/dracula.yml
+    dest: ~/.config/alacritty/dracula-theme.yml
+
+- name: Dotfile ~/.config/alacritty/alacritty.yml
+  file:
+    src: ~/.devenv/dotfiles/alacritty.yml
+    dest: ~/.config/alacritty/alacritty.yml
+    state: link
+  tags: dotfiles

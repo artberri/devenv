@@ -1,0 +1,18 @@
+import:
+  - ~/.config/alacritty/dracula-theme.yml
+
+window:
+  dimensions:
+    columns: 0
+    lines: 0
+  padding:
+    x: 10
+    y: 10
+  opacity: 1.0
+  startup_mode: Fullscreen
+
+font:
+  normal:
+    family: Fira Code
+  bold:
+    family: Fira Code

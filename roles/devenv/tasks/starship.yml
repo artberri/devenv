@@ -16,3 +16,23 @@
     src: ~/.devenv/dotfiles/starship.toml
     dest: ~/.config/starship.toml
     state: link
+- name: Download and install FiraCode Nerd font
+  when: starship_download.changed
+  block:
+    - name: Create temporary directory
+      tempfile:
+        state: directory
+      register: firacodenerd_dir
+    - name: Download FiraCode Nerd font
+      get_url:
+        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/FiraCode.zip
+        dest: "{{ firacodenerd_dir.path }}/firacode-nerd.zip"
+        force: yes
+    - name: Create ~/.fonts directory
+      file: path=~/.fonts state=directory
+    - name: Untar starship
+      unarchive:
+        src: "{{ firacodenerd_dir.path }}/firacode-nerd.zip"
+        dest: ~/.fonts
+    - name: Refresh font cache
+      shell: /usr/bin/fc-cache -vf ~/.fonts

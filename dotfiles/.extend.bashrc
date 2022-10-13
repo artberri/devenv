@@ -8,6 +8,9 @@ shopt -s autocd
 shopt -s cdspell
 shopt -s checkjobs
 
+# Add cargo (rust) env
+[[ -f "$HOME/.cargo/env" ]] && \. "$HOME/.cargo/env"
+
 # Add NVM support
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

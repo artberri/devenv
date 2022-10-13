@@ -1,0 +1,14 @@
+---
+- name: Install Awesome Windows Manager
+  apt:
+    name: "{{ packages }}"
+  become: true
+  vars:
+    packages:
+      - awesome
+      - awesome-extra
+- name: Dotfiles Awesome Windows Manager ~/.config/awesome
+  file:
+    src: ~/.devenv/dotfiles/awesomewm
+    dest: ~/.config/awesome
+    state: link

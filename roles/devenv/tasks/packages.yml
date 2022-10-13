@@ -18,6 +18,8 @@
       - exa
       - fd-find
       - figlet
+      - fonts-firacode
+      - fonts-powerline
       - gnupg
       - htop
       - libgcrypt20-dev
@@ -33,6 +35,7 @@
       - nfs-common
       - openvpn
       - pkg-config
+      - powerline
       - silversearcher-ag
       - software-properties-common
       - ripgrep
