@@ -9,4 +9,4 @@ function run {
   fi
 }
 
-run ~/.config/awesome/awesome_display_layout.sh &
+run ~/.config/awesome/scripts/display_layout.sh &

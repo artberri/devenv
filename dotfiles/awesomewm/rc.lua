@@ -55,7 +55,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -200,9 +200,9 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     if s.index == screen.primary.index then
-        awful.tag({ "main", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+        awful.tag({ "  main ", "  comm ", "  extra " }, s, awful.layout.layouts[1])
     else
-        awful.tag({ "main", "secondary" }, s, awful.layout.layouts[1])
+        awful.tag({ " main ", " secondary " }, s, awful.layout.layouts[1])
     end
 
     -- Create a promptbox for each screen
@@ -262,6 +262,18 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
+-- {{{ Keyboards
+-- define a structure like this:
+local kbdcfg = {}
+kbdcfg.cmd = "setxkbmap"
+kbdcfg.layout = { "us -variant intl", "us", "es" }
+kbdcfg.current = 1 -- us+intl is default
+kbdcfg.switch = function()
+    kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+    os.execute(kbdcfg.cmd .. " " .. kbdcfg.layout[kbdcfg.current])
+end
+-- }}}
+
 -- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
@@ -293,6 +305,8 @@ globalkeys = gears.table.join(
     ),
     awful.key({ modkey, }, "w", function() mymainmenu:show() end,
         { description = "show main menu", group = "awesome" }),
+    awful.key({ modkey, }, "ISO_Next_Group", function() kbdcfg.switch() end,
+        { description = "Switch keyboard layout", group = "client" }),
 
     -- QUake terminal
     awful.key({ modkey, }, "q", function() awful.screen.focused().quake:toggle() end,

@@ -1,0 +1,5 @@
+---
+- name: Install /ObinsKit
+  become: true
+  apt:
+    deb: https://s3.hexcore.xyz/occ/linux/deb/ObinsKit_1.2.11_x64.deb
