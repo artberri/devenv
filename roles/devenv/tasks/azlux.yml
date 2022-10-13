@@ -1,13 +1,14 @@
 - name: install azlux key (apt)
   become: yes
-  apt_key:
-    url: 'https://azlux.fr/repo.gpg.key'
-    state: present
+  get_url:
+    url: https://azlux.fr/repo.gpg
+    dest: /etc/apt/keyrings/azlux-archive-keyring.gpg
+    mode: "0644"
 
 - name: Personnal Azlux's repository
   become: yes
   apt_repository:
-    repo: deb https://packages.azlux.fr/debian/ buster main
+    repo: deb [signed-by=/etc/apt/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ bullseye main
     state: present
     update_cache: yes
 
@@ -18,6 +19,6 @@
   become: true
   vars:
     packages:
-    - broot
-    - duf
-    - dog
+      - broot
+      - duf
+      - dog

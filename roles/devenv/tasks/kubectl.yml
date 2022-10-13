@@ -1,13 +1,14 @@
-- name: install key (apt)
+- name: install kubectl key (apt)
   become: yes
-  apt_key:
-    url: 'https://packages.cloud.google.com/apt/doc/apt-key.gpg'
-    state: present
+  get_url:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    dest: /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+    mode: "0644"
 
 - name: kubernetes-xenial repo (apt)
   become: yes
   apt_repository:
-    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    repo: deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
     state: present
     update_cache: yes
 

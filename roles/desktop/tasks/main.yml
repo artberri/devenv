@@ -4,5 +4,3 @@
 - import_tasks: gdrive.yml
 - import_tasks: tilix.yml
 - import_tasks: keyboard.yml
-- import_tasks: typora.yml
-- import_tasks: copyq.yml

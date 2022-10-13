@@ -1,6 +1,13 @@
 # Extend PATH
 export PATH=$PATH:~/.local/bin:~/.devenv/bin
 
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
+
+shopt -s autocd
+shopt -s cdspell
+shopt -s checkjobs
+
 # Add NVM support
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -47,8 +54,6 @@ cdnvm() {
         fi
     fi
 }
-alias cd='cdnvm'
-cd $PWD
 
 # Alias definitions.
 # enable color support of ls and also add handy aliases
@@ -66,6 +71,7 @@ alias la='exa -A'
 alias l='exa -CF'
 alias du='du -kh'
 alias df='df -kTh'
+alias gp='git pull'
 
 # Maximize window
 wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
@@ -170,16 +176,24 @@ function ii()   # Get current host related info.
     echo
 }
 
-eval "$(starship init bash)"
-
-# Initialize TMUX by default
-if which tmux >/dev/null 2>&1; then
-    if [[ -z "$TMUX" ]] ;then
-        ID="`tmux ls | grep -vm1 attached | cut -d: -f1`" # get the id of a deattached session
-        if [[ -z "$ID" ]] ;then # if not available create a new one
-            tmux new-session
-        else
-            tmux attach-session -t "$ID" # if available attach to it
+function tt()   # Init custom shell
+{
+    # Initialize TMUX by default
+    if which tmux >/dev/null 2>&1; then
+        if [[ -z "$TMUX" ]] ;then
+            ID="`tmux ls | grep -vm1 attached | cut -d: -f1`" # get the id of a deattached session
+            if [[ -z "$ID" ]] ;then # if not available create a new one
+                tmux new-session
+            else
+                tmux attach-session -t "$ID" # if available attach to it
+            fi
         fi
     fi
-fi
+}
+
+#alias cd='cdnvm'
+#cd $PWD
+
+eval "$(starship init bash)"
+
+#set -o vi

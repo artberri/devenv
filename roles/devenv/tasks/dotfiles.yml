@@ -66,8 +66,16 @@
 - name: Extend bashrc
   lineinfile:
     path: ~/.bashrc
-    regexp: '# extend bashrc'
-    insertafter: 'EOF'
-    line: '[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc # extend bashrc'
+    regexp: "# extend bashrc"
+    insertafter: "EOF"
+    line: "[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc # extend bashrc"
+    state: present
+  tags: dotfiles
+- name: Local bashrc
+  lineinfile:
+    path: ~/.bashrc
+    regexp: "# local bashrc"
+    insertafter: "EOF"
+    line: "[[ -f ~/.local.bashrc ]] && . ~/.local.bashrc # local bashrc"
     state: present
   tags: dotfiles

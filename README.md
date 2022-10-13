@@ -6,9 +6,16 @@ A project to set up my development machine ([@artberri](https://github.com/artbe
 
 ## Requirements
 
-Requires Ubuntu. Tested only in [Ubuntu 21.04 (Hirsute Hippo)](http://releases.ubuntu.com/21.04/).
+Requires Ubuntu. Tested only in [Ubuntu 22.04 (Jammy Jellyfish)](http://releases.ubuntu.com/22.04/).
 
-Git:
+Upgrade system:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+```
+
+Install the latest version of git:
 
 ```bash
 sudo apt-add-repository ppa:git-core/ppa -y
