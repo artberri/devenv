@@ -1,0 +1,9 @@
+---
+- name: Install Screenlocker
+  apt:
+    name: "{{ packages }}"
+  become: true
+  vars:
+    packages:
+      - xautolock
+      - suckless-tools

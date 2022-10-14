@@ -12,8 +12,8 @@ window:
     x: 10
     y: 10
   dynamic_padding: false
-  opacity: 1.0
-  startup_mode: Fullscreen
+  opacity: 0.9
+  startup_mode: Windowed
 
 draw_bold_text_with_bright_colors: true
 

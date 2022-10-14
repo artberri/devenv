@@ -55,7 +55,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/artberri/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -71,6 +71,8 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+    awful.layout.suit.max,
+    awful.layout.suit.max.fullscreen,
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -80,8 +82,6 @@ awful.layout.layouts = {
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
     awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
@@ -90,36 +90,38 @@ awful.layout.layouts = {
 }
 -- }}}
 
+local lockscreen = function() awful.util.spawn("slock") end
+
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
-    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual", terminal .. " -e man awesome" },
-    { "edit config", editor_cmd .. " " .. awesome.conffile },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end },
+local myawesomemenu = {
+    { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    { "Manual", terminal .. " -e man awesome" },
+    { "Edit config", editor_cmd .. " " .. awesome.conffile },
+    { "Open terminal", terminal },
+    { "Lock", lockscreen },
+    { "Restart", awesome.restart },
+    { "Quit", function() awesome.quit() end },
 }
 
-local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
-local menu_terminal = { "open terminal", terminal }
+local menu_awesome = { "Awesome", myawesomemenu, beautiful.awesome_icon }
+
+local mymainmenu = {}
 
 if has_fdo then
     mymainmenu = freedesktop.menu.build({
-        before = { menu_awesome },
-        after = { menu_terminal }
+        before = { menu_awesome }
     })
 else
     mymainmenu = awful.menu({
         items = {
             menu_awesome,
-            { "Debian", debian.menu.Debian_menu.Debian },
-            menu_terminal,
+            { "Debian", debian.menu.Debian_menu.Debian }
         }
     })
 end
 
-
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
     menu = mymainmenu })
 
 -- Menubar configuration
@@ -127,11 +129,11 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -188,21 +190,20 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
-
 awful.screen.connect_for_each_screen(function(s)
-    -- Quake terminal
-    s.quake = quake({ app = "alacritty", argname = "--title %s", extra = "--class QuakeDD -e tmux", visible = true,
-        height = 0.9, screen = s })
-
     -- Wallpaper
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
     if s.index == screen.primary.index then
+        -- Quake terminal
+        s.quake = quake({ app = "alacritty", argname = "--title %s",
+            extra = "--class QuakeDD -o \"window.startup_mode=Fullscreen\" -e tmux", visible = true,
+            height = 1, screen = s })
+
         awful.tag({ "  main ", "  comm ", "  extra " }, s, awful.layout.layouts[1])
     else
-        awful.tag({ " main ", " secondary " }, s, awful.layout.layouts[1])
+        awful.tag({ "main" }, s, awful.layout.layouts[1])
     end
 
     -- Create a promptbox for each screen
@@ -233,23 +234,37 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
     -- Add widgets to the wibox
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            mylauncher,
-            s.mytaglist,
-            s.mypromptbox,
-        },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            s.mylayoutbox,
-        },
-    }
+    if s.index == screen.primary.index then
+        s.mywibox:setup {
+            layout = wibox.layout.align.horizontal,
+            { -- Left widgets
+                layout = wibox.layout.fixed.horizontal,
+                mylauncher,
+                s.mytaglist,
+                s.mypromptbox,
+            },
+            s.mytasklist, -- Middle widget
+            { -- Right widgets
+                layout = wibox.layout.fixed.horizontal,
+                mykeyboardlayout,
+                wibox.widget.systray(),
+                mytextclock,
+                s.mylayoutbox,
+            },
+        }
+    else
+        s.mywibox:setup {
+            layout = wibox.layout.align.horizontal,
+            { -- Left widgets
+                layout = wibox.layout.fixed.horizontal,
+                s.mypromptbox,
+            },
+            s.mytasklist, -- Middle widget
+            { -- Right widgets
+                layout = wibox.layout.fixed.horizontal,
+            },
+        }
+    end
 end)
 
 -- }}}
@@ -286,12 +301,20 @@ globalkeys = gears.table.join(
         { description = "view previous", group = "tag" }),
     awful.key({ modkey, }, "l", awful.tag.viewnext,
         { description = "view next", group = "tag" }),
-    awful.key({ modkey, }, "Escape", awful.tag.history.restore,
+    awful.key({ modkey, }, "BackSpace", awful.tag.history.restore,
         { description = "go back", group = "tag" }),
+    awful.key({ modkey, }, "Escape", lockscreen,
+        { description = "lock screen", group = "awesome" }),
     awful.key({ modkey, }, "d", function() xrandr.xrandr() end,
         { description = "display settings", group = "awesome" }),
 
     awful.key({ modkey, }, "j",
+        function()
+            awful.client.focus.byidx(1)
+        end,
+        { description = "focus next by index", group = "client" }
+    ),
+    awful.key({ "Mod1", }, "Tab",
         function()
             awful.client.focus.byidx(1)
         end,
@@ -437,7 +460,7 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 1, 3 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
@@ -624,3 +647,5 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")

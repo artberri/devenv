@@ -77,7 +77,7 @@ alias df='df -kTh'
 alias gp='git pull'
 
 # Maximize window
-wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+# wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 
 #-------------------------------------------------------------
 # zip/tar

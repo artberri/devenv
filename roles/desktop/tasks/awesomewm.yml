@@ -7,6 +7,30 @@
     packages:
       - awesome
       - awesome-extra
+- name: Check that the Iosevka Nerd font exists
+  stat:
+    path: "~/.fonts/Iosevka Nerd Font Complete.ttf"
+  register: iosevca_stat_result
+- name: Download and install Iosevka Nerd font
+  when: not iosevca_stat_result.stat.exists
+  block:
+    - name: Create temporary directory
+      tempfile:
+        state: directory
+      register: iosevkanerd_dir
+    - name: Download Iosevka Nerd font
+      get_url:
+        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Iosevka.zip
+        dest: "{{ iosevkanerd_dir.path }}/iosevka-nerd.zip"
+        force: yes
+    - name: Create ~/.fonts directory
+      file: path=~/.fonts state=directory
+    - name: Untar Iosevka Nerd font
+      unarchive:
+        src: "{{ iosevkanerd_dir.path }}/iosevka-nerd.zip"
+        dest: ~/.fonts
+    - name: Refresh font cache
+      shell: /usr/bin/fc-cache -vf ~/.fonts
 - name: Dotfiles Awesome Windows Manager ~/.config/awesome
   file:
     src: ~/.devenv/dotfiles/awesomewm

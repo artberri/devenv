@@ -10,3 +10,4 @@ function run {
 }
 
 run ~/.config/awesome/scripts/display_layout.sh &
+run ~/.config/awesome/scripts/locker.sh &

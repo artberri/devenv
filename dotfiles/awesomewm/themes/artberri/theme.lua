@@ -5,31 +5,46 @@
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-
+local gears = require("gears")
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
-local configuration_path = gfs.get_configuration_dir()
+local mytheme_path = gfs.get_configuration_dir() .. "themes/artberri/"
 
 local theme = {}
 
-theme.font = "Fira Code 16"
+-- Dracula theme color palette https://draculatheme.com/contribute
+theme.color_background   = "#282a36"
+theme.color_current_line = "#44475a"
+theme.color_foreground   = "#f8f8f2"
+theme.color_comment      = "#6272a4"
+theme.color_cyan         = "#8be9fd"
+theme.color_green        = "#50fa7b"
+theme.color_orange       = "#ffb86c"
+theme.color_pink         = "#ff79c6"
+theme.color_purple       = "#bd93f9"
+theme.color_red          = "#ff5555"
+theme.color_yellow       = "#f1fa8c"
 
-theme.bg_normal   = "#222222"
-theme.bg_focus    = "#535d6c"
-theme.bg_urgent   = "#ff0000"
-theme.bg_minimize = "#444444"
+-- Photo by Adrien Olichon on Unsplash
+theme.wallpaper = mytheme_path .. "adrien-olichon-RCAhiGJsUUE-unsplash.jpg"
+theme.font = "Iosevka Semibold 16"
+
+theme.bg_normal   = theme.color_background
+theme.bg_focus    = theme.color_current_line
+theme.bg_urgent   = theme.color_purple
+theme.bg_minimize = theme.bg_normal
 theme.bg_systray  = theme.bg_normal
 
-theme.fg_normal   = "#aaaaaa"
-theme.fg_focus    = "#ffffff"
-theme.fg_urgent   = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.fg_normal   = theme.color_foreground
+theme.fg_focus    = theme.fg_normal
+theme.fg_urgent   = theme.fg_normal
+theme.fg_minimize = theme.color_comment
 
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+theme.useless_gap   = dpi(5)
+theme.border_width  = dpi(0)
+theme.border_normal = theme.color_background
+theme.border_focus  = theme.color_current_line
+theme.border_marked = theme.color_purple
 
 -- There are other variable sets
 -- overriding the default one when
@@ -45,7 +60,7 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+local taglist_square_size = dpi(0)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
@@ -63,8 +78,8 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path .. "default/submenu.png"
-theme.menu_height       = dpi(15)
-theme.menu_width        = dpi(100)
+theme.menu_height       = dpi(50)
+theme.menu_width        = dpi(300)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -98,8 +113,7 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path .. "default/titleb
 theme.titlebar_maximized_button_normal_active   = themes_path .. "default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titlebar/maximized_focus_active.png"
 
--- Photo by Adrien Olichon on Unsplash
-theme.wallpaper = configuration_path .. "adrien-olichon-RCAhiGJsUUE-unsplash.jpg"
+
 
 -- You can use your own layout icons like this:
 theme.layout_fairh      = themes_path .. "default/layouts/fairhw.png"
@@ -127,6 +141,29 @@ theme.awesome_icon = theme_assets.awesome_icon(
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
+
+theme.hotkeys_bg = theme.bg_normal
+theme.hotkeys_fg = theme.fg_normal
+theme.hotkeys_modifiers_fg = theme.color_purple
+theme.hotkeys_font = "Iosevka Semibold 14"
+theme.hotkeys_description_font = "Iosevka Semibold 14"
+theme.hotkeys_group_margin = dpi(16)
+theme.hotkeys_shape = function(cr, width, height)
+    gears.shape.rounded_rect(cr, width, height, dpi(12))
+end
+
+theme.notification_max_width = dpi(640)
+theme.notification_max_height = dpi(160)
+theme.notification_font = "Iosevka Semibold 12"
+theme.notification_bg = theme.bg_normal
+theme.notification_fg = theme.fg_normal
+theme.notification_border_width = dpi(1)
+theme.notification_border_color = theme.bg_normal
+theme.notification_opacity = 0.8
+theme.notification_icon_size = dpi(48)
+theme.notification_shape = function(cr, width, height)
+    gears.shape.rounded_rect(cr, width, height, 12)
+end
 
 return theme
 

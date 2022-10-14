@@ -1,15 +1,25 @@
 ---
 - name: install vscode key (apt)
-  become: yes
-  get_url:
-    url: https://packages.microsoft.com/keys/microsoft.asc
-    dest: /etc/apt/keyrings/microsoft.asc
-    mode: "0644"
+  stat:
+    path: /etc/apt/keyrings/packages.microsoft.gpg
+  register: vscodekey_stat_result
+- name: Download and install vscode key (apt)
+  when: not vscodekey_stat_result.stat.exists
+  block:
+    - name: Create temporary directory
+      tempfile:
+        state: directory
+      register: vscodekey_dir
+    - name: Dearmor Microsoft key
+      shell: "wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > {{ vscodekey_dir.path }}/packages.microsoft.gpg"
+    - name: Install Microsoft Dearmored key
+      become: true
+      shell: "install -D -o root -g root -m 644 {{ vscodekey_dir.path }}/packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg"
 
 - name: install VS Code repo (apt)
   become: yes
   apt_repository:
-    repo: deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/microsoft.asc] https://packages.microsoft.com/repos/code stable main
+    repo: "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main"
     state: present
 
 - name: install VS Code (apt)
