@@ -1,5 +1,6 @@
 ---
 - import_tasks: packages.yml
+- import_tasks: smbclient.yml
 - import_tasks: screenlock.yml
 - import_tasks: obinskit.yml
 - import_tasks: vscode.yml

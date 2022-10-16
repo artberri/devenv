@@ -1,0 +1,22 @@
+---
+- name: Install Samba Client
+  apt:
+    name: "{{ packages }}"
+  become: true
+  vars:
+    packages:
+      - smbclient
+- name: Ensure old clients servers are supported 1
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/samba/smb.conf
+    regexp: "client min protocol"
+    insertafter: '^\[global\]'
+    line: "   client min protocol = CORE"
+- name: Ensure old clients servers are supported 2
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/samba/smb.conf
+    regexp: "client max protocol"
+    insertafter: '^\[global\]'
+    line: "   client max protocol = SMB3"
