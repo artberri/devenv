@@ -36,3 +36,10 @@
     src: ~/.devenv/dotfiles/awesomewm
     dest: ~/.config/awesome
     state: link
+- name: Clone awesome-copycats
+  git:
+    force: true
+    repo: https://github.com/lcpz/awesome-copycats.git
+    dest: ~/.devenv/dotfiles/awesomewm/copycats
+    depth: 1
+    track_submodules: true

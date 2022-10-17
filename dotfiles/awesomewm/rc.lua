@@ -7,16 +7,17 @@ local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
-local wibox = require("wibox")
+local wibox         = require("wibox")
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful     = require("beautiful")
+local dpi           = require("beautiful.xresources").apply_dpi
 -- Notification library
-local naughty = require("naughty")
-local menubar = require("menubar")
+local naughty       = require("naughty")
+local menubar       = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
-require("awful.hotkeys_popup.keys")
+-- require("awful.hotkeys_popup.keys")
 
 -- Multiple screens settings
 local xrandr = require("utils/xrandr")
@@ -29,10 +30,11 @@ local tasklist = require("config/tasklist")
 local keys = require("config/keys")
 local menu = require("config/menu")
 
-local maintags = {
+awful.util.quake = quake
+awful.util.tasklist = tasklist
+awful.util.tagnames = {
     browser       = "  brws ",
     code          = "  code ",
-    terminal      = "  term ",
     communication = "  comm ",
     extra         = "  xtra "
 }
@@ -71,29 +73,30 @@ terminal = "alacritty"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
--- Default modkey.
+-- Default Modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+Modkey = "Mod4"
+Altkey = "Mod1"
 
 local suit = awful.layout.suit
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     suit.max,
-    suit.max.fullscreen,
+    suit.fair,
+    suit.fair.horizontal,
+    -- suit.max.fullscreen,
     suit.floating,
     suit.tile,
     suit.tile.left,
     suit.tile.bottom,
     suit.tile.top,
-    suit.fair,
-    suit.fair.horizontal,
-    --suit.spiral,
-    --suit.spiral.dwindle,
-    suit.magnifier,
-    suit.corner.nw,
+    -- suit.spiral,
+    -- suit.spiral.dwindle,
+    -- suit.magnifier,
+    -- suit.corner.nw,
     -- suit.corner.ne,
     -- suit.corner.sw,
     -- suit.corner.se,
@@ -108,39 +111,30 @@ local mymainmenu = menu.build({
     lockscreen    = lockscreen
 })
 
-local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+awful.util.launcher = awful.widget.launcher({ image = beautiful.awesome_icon,
     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
-local mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
--- Create a textclock widget
-local mytextclock = wibox.widget.textclock()
-
 -- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
+awful.util.taglist_buttons = gears.table.join(
     awful.button({}, 1, function(t) t:view_only() end),
-    awful.button({ modkey }, 1, function(t)
-        if client.focus then
-            client.focus:move_to_tag(t)
-        end
+    awful.button({ Modkey }, 1, function(t)
+        if client.focus then client.focus:move_to_tag(t) end
     end),
     awful.button({}, 3, awful.tag.viewtoggle),
-    awful.button({ modkey }, 3, function(t)
-        if client.focus then
-            client.focus:toggle_tag(t)
-        end
+    awful.button({ Modkey }, 3, function(t)
+        if client.focus then client.focus:toggle_tag(t) end
     end),
     awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
     awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
 )
 
-local function set_wallpaper(s)
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", function(s)
     -- Wallpaper
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
@@ -150,93 +144,22 @@ local function set_wallpaper(s)
         end
         gears.wallpaper.maximized(wallpaper, s, true)
     end
-end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
-
-awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
-
-    -- Each screen has its own tag table.
-    if s.index == screen.primary.index then
-        -- Quake terminal
-        s.quake = quake({ app = "alacritty", argname = "--title %s",
-            extra = "--class QuakeDD -o \"window.startup_mode=Fullscreen\" -e tmux", visible = true,
-            height = 1, screen = s })
-
-        awful.tag(
-            { maintags.browser, maintags.code, maintags.communication, maintags.extra },
-            s,
-            { suit.max, suit.max, suit.max, suit.fair })
-    else
-        awful.tag({ "main" }, s, suit.max.fullscreen)
-    end
-
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-        awful.button({}, 1, function() awful.layout.inc(1) end),
-        awful.button({}, 3, function() awful.layout.inc(-1) end),
-        awful.button({}, 4, function() awful.layout.inc(1) end),
-        awful.button({}, 5, function() awful.layout.inc(-1) end)))
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
-
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen          = s,
-        filter          = awful.widget.tasklist.filter.currenttags,
-        buttons         = tasklist.buttons,
-        widget_template = tasklist.widget_template,
-    }
-
-    -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
-
-    -- Add widgets to the wibox
-    if s.index == screen.primary.index then
-        s.mywibox:setup {
-            layout = wibox.layout.align.horizontal,
-            { -- Left widgets
-                layout = wibox.layout.fixed.horizontal,
-                mylauncher,
-                s.mytaglist,
-                s.mypromptbox,
-            },
-            s.mytasklist, -- Middle widget
-            { -- Right widgets
-                layout = wibox.layout.fixed.horizontal,
-                mykeyboardlayout,
-                wibox.widget.systray(),
-                mytextclock,
-                s.mylayoutbox,
-            },
-        }
-    else
-        s.mywibox:setup {
-            layout = wibox.layout.align.horizontal,
-            { -- Left widgets
-                layout = wibox.layout.fixed.horizontal,
-                s.mypromptbox,
-            },
-            s.mytasklist, -- Middle widget
-            { -- Right widgets
-                layout = wibox.layout.fixed.horizontal,
-            },
-        }
-    end
 end)
 
+-- No borders when rearranging only 1 non-floating or maximized client
+screen.connect_signal("arrange", function(s)
+    local only_one = #s.tiled_clients == 1
+    for _, c in pairs(s.clients) do
+        if only_one and not c.floating or c.maximized or c.fullscreen then
+            c.border_width = 0
+        else
+            c.border_width = beautiful.border_width
+        end
+    end
+end)
 -- }}}
+
+awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
@@ -250,11 +173,11 @@ clientbuttons = gears.table.join(
     awful.button({}, 1, function(c)
         c:emit_signal("request::activate", "mouse_click", { raise = true })
     end),
-    awful.button({ modkey }, 1, function(c)
+    awful.button({ Modkey }, 1, function(c)
         c:emit_signal("request::activate", "mouse_click", { raise = true })
         awful.mouse.client.move(c)
     end),
-    awful.button({ modkey }, 3, function(c)
+    awful.button({ Modkey }, 3, function(c)
         c:emit_signal("request::activate", "mouse_click", { raise = true })
         awful.mouse.client.resize(c)
     end)
@@ -318,24 +241,30 @@ awful.rules.rules = {
         }
     }, properties = { floating = true } },
 
-    -- Add titlebars to normal clients and dialogs
+    -- Add titlebars to dialogs
     {
-        rule_any   = { type = { "normal", "dialog" } },
+        rule_any   = { type = { "dialog" } },
         properties = { titlebars_enabled = true }
+    },
+
+    -- Remove titlebars from normal clients
+    {
+        rule_any   = { type = { "normal" } },
+        properties = { titlebars_enabled = false }
     },
 
     -- run `xprop | grep -i 'class'` to know the class name
     {
         rule       = { class = "firefox" },
-        properties = { screen = screen.primary.index, tag = maintags.browser }
+        properties = { screen = screen.primary.index, tag = awful.util.tagnames.browser }
     },
     {
         rule       = { class = "Code" },
-        properties = { screen = screen.primary.index, tag = maintags.code }
+        properties = { screen = screen.primary.index, tag = awful.util.tagnames.code }
     },
     {
         rule       = { class = "Slack" },
-        properties = { screen = screen.primary.index, tag = maintags.communication }
+        properties = { screen = screen.primary.index, tag = awful.util.tagnames.communication }
     }
 }
 -- }}}
@@ -371,7 +300,13 @@ client.connect_signal("request::titlebars", function(c)
 
     awful.titlebar(c):setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
+            wibox.container.margin(
+                awful.titlebar.widget.iconwidget(c),
+                dpi(10),
+                dpi(10),
+                dpi(10),
+                dpi(10)
+            ),
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
