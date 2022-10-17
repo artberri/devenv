@@ -167,9 +167,9 @@ awful.screen.connect_for_each_screen(function(s)
             height = 1, screen = s })
 
         awful.tag(
-            { maintags.browser, maintags.code, maintags.terminal, maintags.communication, maintags.extra },
+            { maintags.browser, maintags.code, maintags.communication, maintags.extra },
             s,
-            { suit.max, suit.max, suit.fair, suit.max, suit.fair })
+            { suit.max, suit.max, suit.max, suit.fair })
     else
         awful.tag({ "main" }, s, suit.max.fullscreen)
     end
