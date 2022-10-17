@@ -29,37 +29,22 @@ function keys.global(args)
       { description = "view next", group = "tag" }),
     awful.key({ modkey, }, "BackSpace", awful.tag.history.restore,
       { description = "go back", group = "tag" }),
+    awful.key({ "Mod1", }, "Tab", awful.tag.history.restore,
+      { description = "go back", group = "tag" }),
     awful.key({ modkey, }, "Escape", args.lockscreen,
       { description = "lock screen", group = "awesome" }),
     awful.key({ modkey, }, "d", function() args.xrandr.xrandr() end,
       { description = "display settings", group = "awesome" }),
-
-    awful.key({ modkey, }, "j",
-      function()
-        awful.client.focus.byidx(1)
-      end,
-      { description = "focus next by index", group = "client" }
-    ),
-    awful.key({ "Mod1", }, "Tab",
-      function()
-        awful.client.focus.byidx(1)
-      end,
-      { description = "focus next by index", group = "client" }
-    ),
-    awful.key({ modkey, }, "k",
-      function()
-        awful.client.focus.byidx(-1)
-      end,
-      { description = "focus previous by index", group = "client" }
-    ),
+    awful.key({ modkey, }, "j", function() awful.client.focus.byidx(1) end,
+      { description = "focus next by index", group = "client" }),
+    awful.key({ modkey, }, "k", function() awful.client.focus.byidx(-1) end,
+      { description = "focus previous by index", group = "client" }),
     awful.key({ modkey, }, "w", function() args.mainmenu:show() end,
       { description = "show main menu", group = "awesome" }),
-    awful.key({ modkey, }, "ISO_Next_Group", function() args.kbdcfg.switch() end,
+    awful.key({ modkey, }, "ISO_Next_Group", function() kbdcfg.switch() end,
       { description = "Switch keyboard layout", group = "client" }),
 
     -- QUake terminal
-    awful.key({ modkey, }, "q", function() awful.screen.focused().quake:toggle() end,
-      { description = "dropdown application", group = "launcher" }),
     awful.key({ "Mod1", }, "q", function() awful.screen.focused().quake:toggle() end,
       { description = "dropdown application", group = "launcher" }),
 
@@ -142,7 +127,7 @@ function keys.global(args)
   -- Bind all key numbers to tags.
   -- Be careful: we use keycodes to make it work on any keyboard layout.
   -- This should map on the top row of your keyboard, usually 1 to 9.
-  for i = 1, 3 do
+  for i = 1, 5 do
     globalkeys = gears.table.join(globalkeys,
       -- View tag only.
       awful.key({ modkey }, "#" .. i + 9,
@@ -200,7 +185,7 @@ function keys.client()
         c:raise()
       end,
       { description = "toggle fullscreen", group = "client" }),
-    awful.key({ modkey, "Shift" }, "c", function(c) c:kill() end,
+    awful.key({ modkey }, "q", function(c) c:kill() end,
       { description = "close", group = "client" }),
     awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
       { description = "toggle floating", group = "client" }),

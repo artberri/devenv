@@ -40,11 +40,12 @@ theme.fg_focus    = theme.fg_normal
 theme.fg_urgent   = theme.fg_normal
 theme.fg_minimize = theme.color_comment
 
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(0)
-theme.border_normal = theme.color_background
-theme.border_focus  = theme.color_current_line
-theme.border_marked = theme.color_purple
+theme.useless_gap       = dpi(5)
+theme.gap_single_client = dpi(0)
+theme.border_width      = dpi(0)
+theme.border_normal     = theme.color_background
+theme.border_focus      = theme.color_current_line
+theme.border_marked     = theme.color_purple
 
 -- There are other variable sets
 -- overriding the default one when

@@ -29,6 +29,14 @@ local tasklist = require("config/tasklist")
 local keys = require("config/keys")
 local menu = require("config/menu")
 
+local maintags = {
+    browser       = "  brws ",
+    code          = "  code ",
+    terminal      = "  term ",
+    communication = "  comm ",
+    extra         = "  xtra "
+}
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -70,24 +78,25 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
+local suit = awful.layout.suit
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
+    suit.max,
+    suit.max.fullscreen,
+    suit.floating,
+    suit.tile,
+    suit.tile.left,
+    suit.tile.bottom,
+    suit.tile.top,
+    suit.fair,
+    suit.fair.horizontal,
+    --suit.spiral,
+    --suit.spiral.dwindle,
+    suit.magnifier,
+    suit.corner.nw,
+    -- suit.corner.ne,
+    -- suit.corner.sw,
+    -- suit.corner.se,
 }
 -- }}}
 
@@ -157,9 +166,12 @@ awful.screen.connect_for_each_screen(function(s)
             extra = "--class QuakeDD -o \"window.startup_mode=Fullscreen\" -e tmux", visible = true,
             height = 1, screen = s })
 
-        awful.tag({ "  main ", "  comm ", "  extra " }, s, awful.layout.layouts[1])
+        awful.tag(
+            { maintags.browser, maintags.code, maintags.terminal, maintags.communication, maintags.extra },
+            s,
+            { suit.max, suit.max, suit.fair, suit.max, suit.fair })
     else
-        awful.tag({ "main" }, s, awful.layout.layouts[1])
+        awful.tag({ "main" }, s, suit.max.fullscreen)
     end
 
     -- Create a promptbox for each screen
@@ -307,13 +319,24 @@ awful.rules.rules = {
     }, properties = { floating = true } },
 
     -- Add titlebars to normal clients and dialogs
-    { rule_any = { type = { "normal", "dialog" }
-    }, properties = { titlebars_enabled = true }
+    {
+        rule_any   = { type = { "normal", "dialog" } },
+        properties = { titlebars_enabled = true }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    -- run `xprop | grep -i 'class'` to know the class name
+    {
+        rule       = { class = "firefox" },
+        properties = { screen = screen.primary.index, tag = maintags.browser }
+    },
+    {
+        rule       = { class = "Code" },
+        properties = { screen = screen.primary.index, tag = maintags.code }
+    },
+    {
+        rule       = { class = "Slack" },
+        properties = { screen = screen.primary.index, tag = maintags.communication }
+    }
 }
 -- }}}
 
