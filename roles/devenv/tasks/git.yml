@@ -41,6 +41,18 @@
     scope: global
     value: commit -a --amend --no-edit
   tags: git
+- name: Add pull alias to ~/.gitconfig
+  community.general.git_config:
+    name: alias.p
+    scope: global
+    value: pull
+  tags: git
+- name: Add push alias to ~/.gitconfig
+  community.general.git_config:
+    name: alias.h
+    scope: global
+    value: push
+  tags: git
 - name: Add lg alias to ~/.gitconfig
   community.general.git_config:
     name: alias.lg

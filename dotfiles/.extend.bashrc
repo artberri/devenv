@@ -4,6 +4,8 @@ export PATH=$PATH:~/.local/bin:~/.devenv/bin
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 
+export EXA_COLORS=di=34:bd=33:cd=33:so=31:ex=32:ur=33:uw=31:ux=32:ue=32:uu=33:gu=33:lc=31:df=32:sn=32:nb=32:nk=32:nm=32:ng=32:nt=32
+
 shopt -s autocd
 shopt -s cdspell
 shopt -s checkjobs
@@ -70,11 +72,10 @@ fi
 
 # some more aliases
 alias ll='exa -alF'
-alias la='exa -A'
-alias l='exa -CF'
 alias du='du -kh'
-alias df='df -kTh'
-alias gp='git pull'
+alias df='duf'
+alias g='git'
+
 
 # Maximize window
 # wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz

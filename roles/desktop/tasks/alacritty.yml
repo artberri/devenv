@@ -63,8 +63,8 @@
 
 - name: Install alacritty theme
   get_url:
-    url: https://raw.githubusercontent.com/dracula/alacritty/master/dracula.yml
-    dest: ~/.config/alacritty/dracula-theme.yml
+    url: https://raw.githubusercontent.com/ahmadawais/shades-of-purple-alacritty/master/alacritty.yml
+    dest: ~/.config/alacritty/shades-of-purple-alacritty-theme.yml
 
 - name: Dotfile ~/.config/alacritty/alacritty.yml
   file:
