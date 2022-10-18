@@ -8,19 +8,21 @@ local dpi             = xresources.apply_dpi
 local gears           = require("gears")
 local awful           = require("awful")
 local wibox           = require("wibox")
-local beautiful       = require("beautiful")
 local gfs             = require("gears.filesystem")
 local themes_path     = gfs.get_themes_dir()
 local mytheme_path    = gfs.get_configuration_dir() .. "themes/artberri/"
 local holo_theme_path = os.getenv("HOME") .. "/.config/awesome/copycats/themes/holo"
-local powerarrow_path = os.getenv("HOME") .. "/.config/awesome/copycats/themes/powerarrow-dark"
+local powerarrow_path = os.getenv("HOME") .. "/.config/awesome/copycats/themes/powerarrow"
 local suit            = awful.layout.suit
+local lain            = require("lain")
 
--- Keyboard map indicator and switcher
-local mykeyboardlayout = awful.widget.keyboardlayout()
+local markup = lain.util.markup
+local quake = lain.util.quake
+local arrow = lain.util.separators.arrow_left
+local separator = wibox.container.background(wibox.container.margin(wibox.widget {
+    markup = ' ',
+}, dpi(2)), "#6943FF")
 
--- Create a textclock widget
-local mytextclock = wibox.widget.textclock()
 
 local theme = {}
 
@@ -47,7 +49,7 @@ theme.bg_normal   = theme.color_background
 theme.bg_focus    = theme.color_background_active
 theme.bg_urgent   = theme.color_urgent
 theme.bg_minimize = theme.bg_normal
-theme.bg_systray  = theme.bg_normal
+theme.bg_systray  = theme.color_background_active
 
 theme.fg_normal   = theme.color_foreground
 theme.fg_focus    = theme.fg_normal
@@ -77,7 +79,7 @@ theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height       = dpi(50)
 theme.menu_width        = dpi(300)
 
--- Define the image to load
+-- Icons
 theme.titlebar_close_button_normal              = powerarrow_path .. "/icons/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = powerarrow_path .. "/icons/titlebar/close_focus.png"
 theme.titlebar_minimize_button_normal           = powerarrow_path .. "/icons/titlebar/minimize_normal.png"
@@ -98,20 +100,18 @@ theme.titlebar_maximized_button_normal_inactive = powerarrow_path .. "/icons/tit
 theme.titlebar_maximized_button_focus_inactive  = powerarrow_path .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active   = powerarrow_path .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = powerarrow_path .. "/icons/titlebar/maximized_focus_active.png"
-
--- You can use your own layout icons like this:
-theme.layout_tile       = holo_theme_path .. "/icons/tile.png"
-theme.layout_tileleft   = holo_theme_path .. "/icons/tileleft.png"
-theme.layout_tilebottom = holo_theme_path .. "/icons/tilebottom.png"
-theme.layout_tiletop    = holo_theme_path .. "/icons/tiletop.png"
-theme.layout_fairv      = holo_theme_path .. "/icons/fairv.png"
-theme.layout_fairh      = holo_theme_path .. "/icons/fairh.png"
-theme.layout_spiral     = holo_theme_path .. "/icons/spiral.png"
-theme.layout_dwindle    = holo_theme_path .. "/icons/dwindle.png"
-theme.layout_max        = holo_theme_path .. "/icons/max.png"
-theme.layout_fullscreen = holo_theme_path .. "/icons/fullscreen.png"
-theme.layout_magnifier  = holo_theme_path .. "/icons/magnifier.png"
-theme.layout_floating   = holo_theme_path .. "/icons/floating.png"
+theme.layout_tile                               = holo_theme_path .. "/icons/tile.png"
+theme.layout_tileleft                           = holo_theme_path .. "/icons/tileleft.png"
+theme.layout_tilebottom                         = holo_theme_path .. "/icons/tilebottom.png"
+theme.layout_tiletop                            = holo_theme_path .. "/icons/tiletop.png"
+theme.layout_fairv                              = holo_theme_path .. "/icons/fairv.png"
+theme.layout_fairh                              = holo_theme_path .. "/icons/fairh.png"
+theme.layout_spiral                             = holo_theme_path .. "/icons/spiral.png"
+theme.layout_dwindle                            = holo_theme_path .. "/icons/dwindle.png"
+theme.layout_max                                = holo_theme_path .. "/icons/max.png"
+theme.layout_fullscreen                         = holo_theme_path .. "/icons/fullscreen.png"
+theme.layout_magnifier                          = holo_theme_path .. "/icons/magnifier.png"
+theme.layout_floating                           = holo_theme_path .. "/icons/floating.png"
 
 -- Generate Awesome icon:
 theme.awesome_icon = mytheme_path .. "logo.png"
@@ -131,7 +131,7 @@ theme.hotkeys_shape = function(cr, width, height)
 end
 
 theme.notification_max_width = dpi(640)
-theme.notification_max_height = dpi(160)
+theme.notification_max_height = dpi(320)
 theme.notification_font = "Iosevka Semibold 12"
 theme.notification_bg = theme.bg_normal
 theme.notification_fg = theme.fg_normal
@@ -142,6 +142,106 @@ theme.notification_icon_size = dpi(48)
 theme.notification_shape = function(cr, width, height)
     gears.shape.rounded_rect(cr, width, height, 12)
 end
+
+-- Keyboard map indicator and switcher
+local function keyboardlayout_with_font(font)
+    local result = awful.widget.keyboardlayout()
+    result.widget.font = font
+    return result
+end
+
+local mykeyboardlayout = keyboardlayout_with_font(theme.font)
+
+-- Create a textclock widget
+local mytextclock = wibox.widget.textclock()
+mytextclock.font = theme.font
+
+-- Calendar
+theme.cal = lain.widget.cal({
+    --cal = "cal --color=always",
+    attach_to = { mytextclock },
+    notification_preset = {
+        font = theme.font,
+        fg   = theme.fg_normal,
+        bg   = theme.bg_normal
+    }
+})
+
+local hal9000 = wibox.container.margin(
+    wibox.widget {
+        markup = 'HAL 9000',
+        align  = 'center',
+        valign = 'center',
+        widget = wibox.widget.textbox,
+        font   = "Iosevka Semibold 16"
+    },
+    dpi(10),
+    dpi(10),
+    dpi(10),
+    dpi(10)
+)
+
+-- Battery
+local bat = lain.widget.bat({
+    settings = function()
+        if bat_now.status and bat_now.status ~= "N/A" then
+            if bat_now.ac_status == 1 then
+                widget:set_markup(markup.font(theme.font, " AC"))
+                return
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
+                widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 25 then
+                widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 50 then
+                widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 75 then
+                widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+            else
+                widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+            end
+        else
+            widget:set_markup(markup.font(theme.font, " ??"))
+        end
+    end
+})
+
+-- ALSA volume
+local volume = lain.widget.alsa({
+    --togglechannel = "IEC958,3",
+    settings = function()
+        local vlevel = volume_now.level
+
+        if volume_now.status == "off" then
+            vlevel = "婢 " .. vlevel .. "%"
+        else
+            vlevel = "墳 " .. vlevel .. "%"
+        end
+
+        widget:set_markup(markup.font(theme.font, vlevel))
+    end
+})
+
+volume.widget:buttons(awful.util.table.join(
+    awful.button({}, 1, function() -- left click
+        awful.spawn(string.format("%s -e alsamixer", terminal))
+    end),
+    awful.button({}, 2, function() -- middle click
+        os.execute(string.format("%s set %s 100%%", volume.cmd, volume.channel))
+        volume.update()
+    end),
+    awful.button({}, 3, function() -- right click
+        os.execute(string.format("%s set %s toggle", volume.cmd, volume.togglechannel or volume.channel))
+        volume.update()
+    end),
+    awful.button({}, 4, function() -- scroll up
+        os.execute(string.format("%s set %s 1%%+", volume.cmd, volume.channel))
+        volume.update()
+    end),
+    awful.button({}, 5, function() -- scroll down
+        os.execute(string.format("%s set %s 1%%-", volume.cmd, volume.channel))
+        volume.update()
+    end)
+))
 
 function theme.at_screen_connect(s)
     -- If wallpaper is a function, call it with the screen
@@ -154,7 +254,7 @@ function theme.at_screen_connect(s)
     -- Each screen has its own tag table.
     if s.index == screen.primary.index then
         -- Quake terminal
-        s.quake = awful.util.quake({ app = "alacritty", argname = "--title %s",
+        s.quake = quake({ app = "alacritty", argname = "--title %s",
             extra = "--class QuakeDD -o \"window.startup_mode=Fullscreen\" -e tmux", visible = true,
             height = 1, screen = s })
 
@@ -205,15 +305,38 @@ function theme.at_screen_connect(s)
             { -- Left widgets
                 layout = wibox.layout.fixed.horizontal,
                 awful.util.launcher,
+                hal9000,
                 s.mytaglist,
+                separator,
                 s.mypromptbox,
             },
             s.mytasklist, -- Middle widget
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                mykeyboardlayout,
-                wibox.widget.systray(),
-                mytextclock,
+                -- arrow(theme.color_background, theme.color_background_active),
+                separator,
+                wibox.container.background(wibox.container.margin(wibox.widget.systray(), dpi(5), dpi(5), dpi(5), dpi(5))
+                    , theme.color_background_active),
+                arrow(theme.color_background_active, theme.color_background),
+                { -- Left widgets
+                    wibox.container.margin(wibox.widget {
+                        markup = '',
+                        align  = 'center',
+                        valign = 'center',
+                        widget = wibox.widget.textbox,
+                        font   = "Iosevka Semibold 32"
+                    }, dpi(10), dpi(0)),
+                    wibox.container.margin(mykeyboardlayout, dpi(0), dpi(5), dpi(0), dpi(5)),
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                arrow(theme.color_background, theme.color_background_active),
+                wibox.container.background(wibox.container.margin(volume.widget, dpi(10), dpi(10)),
+                    theme.color_background_active),
+                arrow(theme.color_background_active, theme.color_background),
+                wibox.container.background(wibox.container.margin(bat.widget, dpi(10), dpi(10)), theme.color_background),
+                arrow(theme.color_background, theme.color_background_active),
+                wibox.container.background(mytextclock, theme.color_background_active),
+                arrow(theme.color_background_active, theme.color_background),
                 s.mylayoutbox,
             },
         }

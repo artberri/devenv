@@ -43,3 +43,8 @@
     dest: ~/.devenv/dotfiles/awesomewm/copycats
     depth: 1
     track_submodules: true
+- name: Dotfiles Awesome Windows Manager ~/.config/awesome
+  file:
+    src: ~/.devenv/dotfiles/awesomewm/copycats/lain
+    dest: ~/.devenv/dotfiles/awesomewm/lain
+    state: link

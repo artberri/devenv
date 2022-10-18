@@ -20,17 +20,13 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- require("awful.hotkeys_popup.keys")
 
 -- Multiple screens settings
-local xrandr = require("utils/xrandr")
-
--- Quake script https://raw.githubusercontent.com/lcpz/lain/master/util/quake.lua
-local quake = require("utils/quake")
+local xrandr = require("utils.xrandr")
 
 -- Config
-local tasklist = require("config/tasklist")
-local keys = require("config/keys")
-local menu = require("config/menu")
+local tasklist = require("config.tasklist")
+local keys = require("config.keys")
+local menu = require("config.menu")
 
-awful.util.quake = quake
 awful.util.tasklist = tasklist
 awful.util.tagnames = {
     browser       = "  brws ",
