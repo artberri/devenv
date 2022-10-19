@@ -1,0 +1,26 @@
+---
+- name: Install flameshot
+  apt:
+    name: "{{ packages }}"
+  become: true
+  vars:
+    packages:
+      - flameshot
+- name: Add "disabledTrayIcon=true" is in section "[General]" in specified file
+  community.general.ini_file:
+    path: ~/.config/flameshot/flameshot.ini
+    section: General
+    option: disabledTrayIcon
+    value: "true"
+    mode: "0644"
+    state: present
+    exclusive: true
+- name: Add "uiColor=#6943ff" is in section "[General]" in specified file
+  community.general.ini_file:
+    path: ~/.config/flameshot/flameshot.ini
+    section: General
+    option: uiColor
+    value: "#6943ff"
+    mode: "0644"
+    state: present
+    exclusive: true

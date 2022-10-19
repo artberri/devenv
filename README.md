@@ -2,6 +2,7 @@
 
 A project to set up my development machine ([@artberri](https://github.com/artberri)) in an automated way.
 
+![Screenshot of the desktop](screenshot-desktop.png)
 ![Screenshot of the shell](screenshot.png)
 
 ## Requirements
@@ -44,11 +45,11 @@ devenv
 
 ## Others
 
-Mount Google Drive folder:
-
-```bash
-google-drive-ocamlfuse ~/google-drive
-```
+- Use [Shades of Purple](https://shadesofpurple.pro/) theme for VSCode, Firefox, Chrome...
+- Mount Google Drive folder:
+  ```bash
+  google-drive-ocamlfuse ~/google-drive
+  ```
 
 ## License
 

@@ -9,4 +9,5 @@
 - import_tasks: keyboard.yml
 - import_tasks: rust.yml
 - import_tasks: alacritty.yml
+- import_tasks: flameshot.yml
 - import_tasks: awesomewm.yml

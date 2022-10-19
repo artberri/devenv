@@ -121,7 +121,9 @@ function keys.global(args)
       { description = "lua execute prompt", group = "awesome" }),
     -- Menubar
     awful.key({ Modkey }, "p", function() args.menubar.show() end,
-      { description = "show the menubar", group = "launcher" })
+      { description = "show the menubar", group = "launcher" }),
+    -- Print screen
+    awful.key({}, "Print", function() awful.util.spawn("flameshot gui") end)
   )
 
   -- Bind all key numbers to tags.

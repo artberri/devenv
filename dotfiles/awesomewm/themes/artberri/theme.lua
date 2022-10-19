@@ -9,7 +9,6 @@ local gears           = require("gears")
 local awful           = require("awful")
 local wibox           = require("wibox")
 local gfs             = require("gears.filesystem")
-local themes_path     = gfs.get_themes_dir()
 local mytheme_path    = gfs.get_configuration_dir() .. "themes/artberri/"
 local holo_theme_path = os.getenv("HOME") .. "/.config/awesome/copycats/themes/holo"
 local powerarrow_path = os.getenv("HOME") .. "/.config/awesome/copycats/themes/powerarrow"
@@ -75,7 +74,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_submenu_icon = themes_path .. "default/submenu.png"
+theme.menu_submenu_icon = powerarrow_path .. "/icons/submenu.png"
 theme.menu_height       = dpi(50)
 theme.menu_width        = dpi(300)
 
@@ -230,7 +229,7 @@ volume.widget:buttons(awful.util.table.join(
         volume.update()
     end),
     awful.button({}, 3, function() -- right click
-        os.execute(string.format("%s set %s toggle", volume.cmd, volume.togglechannel or volume.channel))
+        os.execute(string.format("%s -D pulse set %s toggle", volume.cmd, volume.togglechannel or volume.channel))
         volume.update()
     end),
     awful.button({}, 4, function() -- scroll up
@@ -268,7 +267,7 @@ function theme.at_screen_connect(s)
             s,
             { suit.max, suit.max, suit.max, suit.fair })
     else
-        awful.tag({ "main" }, s, suit.max.fullscreen)
+        awful.tag({ "main" }, s, suit.fair)
     end
 
     -- Create a promptbox for each screen
